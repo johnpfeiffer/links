@@ -21,6 +21,12 @@ flowchart TD
   Validate --> Render["Render only existing link attributes"]
 ```
 
+Content loading: `Link.loadAll` fetches the five favorites JSON files from
+`raw.githubusercontent.com` (`main`) with the default HTTP cache mode, so GitHub's 5-minute
+CDN TTL (`cache-control: max-age=300`) bounds content staleness. The bundled
+`app/src/content/*.json` copies are only an offline fallback and are refreshed manually
+from the favorites repo.
+
 ## Type-Safety Gates
 
 The application is authored in TypeScript with strict compiler settings in `app/tsconfig.json`.
