@@ -231,18 +231,6 @@
       ]
     },
     {
-      "title": "Maker's Schedule from Paul Graham",
-      "url": "https://www.paulgraham.com/makersschedule.html",
-      "published": null,
-      "tags": [
-        "People",
-        "Career Transition",
-        "Engineering Management",
-        "Y Combinator",
-        "Blog"
-      ]
-    },
-    {
       "title": "Maker to Manager",
       "url": "https://www.intercom.com/blog/maker-to-manager",
       "published": null,
@@ -1442,18 +1430,6 @@
       ]
     },
     {
-      "title": "On Writing Tech Specs",
-      "url": "https://codeburst.io/on-writing-tech-specs-6404c9791159?gi=147dabb57a56",
-      "published": null,
-      "tags": [
-        "People",
-        "Technical Specifications",
-        "Documentation",
-        "Process",
-        "Blog"
-      ]
-    },
-    {
       "title": "Code Review in Remote Teams",
       "url": "https://web.hypothes.is/blog/code-review-in-remote-teams/",
       "published": "2016-11-18",
@@ -1800,6 +1776,36 @@
       ]
     },
     {
+      "title": "How to become a startup VPE (Engineer versus VPE - with Martin Casado and Sonal Chokshi)",
+      "url": "https://sfelc.com/podcasts/how-to-become-a-startup-vpe-martin-casado-sonal-chokshi",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/how-to-become-a-startup-vpe-with-martin-casado/id1481996448?i=1000489296453",
+      "published": "2020-08-29",
+      "tags": [
+        "People",
+        "Leadership",
+        "Team",
+        "Startup",
+        "Career",
+        "VPE",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Growing Into a VPE - Patterns & Anti-Patterns (Cathy Polinsky and Jerry Krikheli and Richard Wong and Erica Lockheimer and Claire Lew)",
+      "url": "https://sfelc.com/podcasts/growing-into-a-vpe-patterns-and-anti-patterns-cathy-polinsky-jerry-krikheli-richard-wong-erica-lockheimer-claire-lew",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/growing-into-a-vpe-patterns-anti-patterns-ft-cathy/id1481996448?i=1000490290588",
+      "published": "2020-09-06",
+      "tags": [
+        "People",
+        "Leadership",
+        "Team",
+        "Startup",
+        "Career",
+        "VPE",
+        "Podcast"
+      ]
+    },      
+    {
       "title": "HBR: What Only the CEO Can Do",
       "url": "https://hbr.org/2009/05/what-only-the-ceo-can-do",
       "published": null,
@@ -1935,6 +1941,72 @@
         "Intercom",
         "Blog",
         "Leadership"
+      ]
+    },
+    {
+      "title": "Manager Tools: Using An Influence/Stakeholder Map To Improve Your Relationships",
+      "url": "https://www.manager-tools.com/2024/12/using-influencestakeholder-map-improve-your-relationships",
+      "alternate-url": "https://web.archive.org/web/20251103074734/https://www.manager-tools.com/2024/12/using-influencestakeholder-map-improve-your-relationships",
+      "published": "2024-12-19",
+      "tags": [
+        "People",
+        "Manager Tools",
+        "Influence",
+        "Relationships",
+        "Communication",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Honeycomb: An Engineering Manager's Bill of Rights (and Responsibilities)",
+      "url": "https://www.honeycomb.io/blog/an-engineering-managers-bill-of-rights-and-responsibilities",
+      "alternate-url": "https://web.archive.org/web/20260419044642/https://www.honeycomb.io/blog/an-engineering-managers-bill-of-rights-and-responsibilities",
+      "published": "2022-08-18",
+      "tags": [
+        "People",
+        "Engineering Management",
+        "Leadership",
+        "Culture",
+        "Feedback",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Stack Overflow: Paging Charity! How can engineering leaders avoid becoming Bond villains?",
+      "url": "https://stackoverflow.blog/2026/06/26/paging-charity-how-can-engineering-leaders-avoid-becoming-bond-villains/",
+      "alternate-url": "https://web.archive.org/web/20260728044134/https://stackoverflow.blog/2026/06/26/paging-charity-how-can-engineering-leaders-avoid-becoming-bond-villains/",
+      "published": "2026-06-26",
+      "tags": [
+        "People",
+        "Engineering Management",
+        "Leadership",
+        "Charity Majors",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Linear: Why and how we do work trials at Linear",
+      "url": "https://linear.app/now/why-and-how-we-do-work-trials-at-linear",
+      "alternate-url": "https://web.archive.org/web/20260725204808/https://linear.app/now/why-and-how-we-do-work-trials-at-linear",
+      "published": "2023-12-13",
+      "tags": [
+        "People",
+        "Hiring",
+        "Interviewing",
+        "Startup",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Steve Yegge: The Last Technical Interview",
+      "url": "https://steve-yegge.medium.com/the-last-technical-interview-bc13ddcf4564",
+      "alternate-url": "https://web.archive.org/web/20260713004342/https://steve-yegge.medium.com/the-last-technical-interview-bc13ddcf4564",
+      "published": "2026-05-29",
+      "tags": [
+        "People",
+        "Hiring",
+        "Interviewing",
+        "Blog"
       ]
     }
   ]
