@@ -35,7 +35,7 @@ function pushLinksFromJson(rawLinks: unknown[], data: unknown, label: string): v
 }
 
 async function fetchJson(url: string): Promise<unknown> {
-  const res = await fetch(url, { cache: "force-cache" });
+  const res = await fetch(url, { cache: "default" });
   if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status} ${res.statusText}`);
   return res.json();
 }
