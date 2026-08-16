@@ -131,12 +131,12 @@
       ]
     },
     {
-      "title": "Internet History Podcast: Ebay from AuctionWeb",
+      "title": "Internet History Podcast: eBay from AuctionWeb",
       "url": "https://www.internethistorypodcast.com/2015/05/the-founding-of-ebay/",
       "published": "2015-05-25",
       "tags": [
         "History",
-        "Ebay",
+        "eBay",
         "Startups",
         "Business",
         "Podcast"
@@ -460,6 +460,45 @@
         "AI",
         "History",
         "Podcast"
+      ]
+    },
+    {
+      "title": "New Books Network: Sally Smith Hughes on Genentech: The Beginnings of Biotech (founders and founding)",
+      "url": "https://newbooksnetwork.com/sally-smith-hughes-genentech-the-beginnings-of-biotech-university-of-chicago-press-2011",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/new-books-in-biology-and-evolution/id1600136626?i=1000544860489",
+      "published": "2012-12-03",
+      "tags": [
+        "History",
+        "Business",
+        "Startups",
+        "Book",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Internet History Podcast: Jason Calacanis on Silicon Alley, the Dot-Com Bubble, and Web 2.0",
+      "url": "https://www.internethistorypodcast.com/2016/10/jason-calacanis-on-silicon-alley-the-dot-com-bubble-and-web-2-0/",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/techmeme-ride-home/id1355212895?i=1000610214874",
+      "published": "2016-10-24",
+      "tags": [
+        "History",
+        "Jason Calacanis",
+        "Dot-Com Bubble",
+        "Silicon Alley",
+        "Web 2.0",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "All Things Distributed: Continuous Reinvention - A Brief History of Block Storage at AWS (EBS)",
+      "url": "https://www.allthingsdistributed.com/2024/08/continuous-reinvention-a-brief-history-of-block-storage-at-aws.html",
+      "alternate-url": "https://web.archive.org/web/20260725132438/https://www.allthingsdistributed.com/2024/08/continuous-reinvention-a-brief-history-of-block-storage-at-aws.html",
+      "published": "2024-08-22",
+      "tags": [
+        "History",
+        "AWS",
+        "Infrastructure",
+        "Blog"
       ]
     }
   ]

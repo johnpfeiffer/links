@@ -13,11 +13,17 @@ import {
   buildTagTogglePath,
   isTagEnabled,
 } from "../models/tags";
-import type { TagRecord } from "../types";
+import type { TagRecord, TagRouteNamespace } from "../types";
 
-export default function AllTagsSection({ app, enabledTags, tags }: {
+export default function AllTagsSection({
+  app,
+  enabledTags,
+  routeNamespace = "tags",
+  tags,
+}: {
   app: string;
   enabledTags: TagRecord[];
+  routeNamespace?: TagRouteNamespace;
   tags: TagRecord[];
 }) {
   const [tagsExpanded, setTagsExpanded] = useState(false);
@@ -58,7 +64,7 @@ export default function AllTagsSection({ app, enabledTags, tags }: {
             <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
               {tags.map((tag) => {
                 const enabled = isTagEnabled(enabledTags, tag);
-                const to = buildTagTogglePath(app, enabledTags, tag);
+                const to = buildTagTogglePath(app, enabledTags, tag, routeNamespace);
 
                 return (
                   <Chip

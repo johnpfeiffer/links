@@ -79,4 +79,17 @@ describe("buildTagTogglePath", () => {
     assert.equal(rootNext, "/tags");
     assert.equal(appNext, "/links/tags");
   });
+
+  it("adds and removes tags within the sources namespace", () => {
+    const enabled = [Tag.fromLabel("tag1")];
+
+    assert.equal(
+      buildTagTogglePath("links", enabled, Tag.fromLabel("tag2"), "sources"),
+      "/links/sources/tag1/tag2"
+    );
+    assert.equal(
+      buildTagTogglePath("links", enabled, Tag.fromLabel("tag1"), "sources"),
+      "/links/sources"
+    );
+  });
 });

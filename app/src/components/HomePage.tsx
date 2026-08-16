@@ -9,25 +9,14 @@ import {
 import { Box, Button, Container, Paper, Stack, Typography } from "@mui/material";
 import { parseUrlPath } from "../lib/parseUrlPath";
 import { collectTags, filterLinksByTags } from "../models/links";
-import { buildTagsPath } from "../models/tags";
+import { buildTagFilterPath, buildTagsPath } from "../models/tags";
 import FavoriteTagsSection from "./FavoriteTagsSection";
-import AllTagsSection from "./AllTagsSection";
 import LinksSection from "./LinksSection";
 import Loading from "./Loading";
 import type { LinkRecord, RootLoaderData, TagRecord } from "../types";
 
 function buildSourcesPath(app: string, tags: readonly TagRecord[] = []): string {
-  const segments = [];
-  const trimmedApp = String(app ?? "").trim();
-  if (trimmedApp) {
-    segments.push(encodeURIComponent(trimmedApp));
-  }
-  segments.push("sources");
-  tags.forEach((tag) => {
-    if (!tag?.key) return;
-    segments.push(encodeURIComponent(tag.key));
-  });
-  return `/${segments.join("/")}`;
+  return buildTagFilterPath(app, tags, "sources");
 }
 
 function buildChatPath(app: string): string {
@@ -100,15 +89,11 @@ export default function HomePage() {
               return (
                 <>
                   <FavoriteTagsSection app={app} enabledTags={enabledTags} />
-                  <AllTagsSection 
-                    app={app}
-                    enabledTags={enabledTags}
-                    tags={allTags}
-                  />
                   <LinksSection
                     app={app}
                     links={filteredLinks}
                     enabledTags={enabledTags}
+                    tags={allTags}
                   />
                 </>
               );

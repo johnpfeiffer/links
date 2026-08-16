@@ -6,6 +6,7 @@
       "published": "2026-02-23",
       "tags": [
         "Engineering",
+        "Turing Award",
         "Algorithms",
         "Distributed Systems",
         "History",
@@ -254,6 +255,7 @@
       "published": "2013-01-01",
       "tags": [
         "Engineering",
+        "Turing Award",
         "Requirements",
         "Quality",
         "Leslie Lamport"
@@ -340,13 +342,14 @@
       "tags": [
         "Engineering",
         "Testing",
-        "Quality"
+        "Quality",
+        "Paper"
       ]
     },
     {
       "title": "HN Discussion: Write Tests. Not Too Many. Mostly Integration",
       "url": "https://news.ycombinator.com/item?id=15565875",
-      "published": null,
+      "published": "2017-10-27",
       "tags": [
         "Engineering",
         "Testing",
@@ -356,7 +359,7 @@
     {
       "title": "HN Discussion: List of Strings to Use in QA Testing",
       "url": "https://news.ycombinator.com/item?id=18466787",
-      "published": null,
+      "published": "2018-11-16",
       "tags": [
         "Engineering",
         "Quality",
@@ -366,7 +369,7 @@
     {
       "title": "HN Discussion: Crowdsourcing How to Review Code",
       "url": "https://news.ycombinator.com/item?id=11416746",
-      "published": null,
+      "published": "2016-04-03",
       "tags": [
         "Engineering",
         "Code Review"
@@ -528,7 +531,7 @@
         "Engineering",
         "Visualization",
         "Algorithms",
-        "blog"
+        "Blog"
       ]
     },
     {
@@ -539,7 +542,7 @@
         "Engineering",
         "Visualization",
         "Algorithms",
-        "blog"
+        "Blog"
       ]
     },
     {
@@ -551,7 +554,7 @@
         "Visualization",
         "Data Structures",
         "Algorithms",
-        "blog"
+        "Blog"
       ]
     },
     {
@@ -581,7 +584,7 @@
       "tags": [
         "Engineering",
         "Architecture",
-        "Anti-patterns",
+        "Anti-Patterns",
         "Systems Design",
         "Article"
       ]
@@ -802,7 +805,7 @@
     {
       "title": "HN Discussion: Modules vs Microservices",
       "url": "https://news.ycombinator.com/item?id=13960107",
-      "published": null,
+      "published": "2017-03-26",
       "tags": [
         "Engineering",
         "Modules",
@@ -870,7 +873,7 @@
     {
       "title": "HN Discussion: A Simple Guide to Scaling to 10M Users",
       "url": "https://news.ycombinator.com/item?id=18760350",
-      "published": null,
+      "published": "2018-12-26",
       "tags": [
         "Engineering",
         "Scalability",
@@ -973,8 +976,10 @@
       "published": "1978-08-01",
       "tags": [
         "Engineering",
+        "Turing Award",
         "Concurrency",
-        "Tony Hoare"
+        "Tony Hoare",
+        "Paper"
       ]
     },
     {
@@ -983,8 +988,10 @@
       "published": "1980-10-27",
       "tags": [
         "Engineering",
+        "Turing Award",
         "Complexity",
-        "Tony Hoare"
+        "Tony Hoare",
+        "Paper"
       ]
     },
     {
@@ -993,8 +1000,10 @@
       "published": "2001-08-01",
       "tags": [
         "Engineering",
+        "Turing Award",
         "Algorithms",
-        "Butler Lampson"
+        "Butler Lampson",
+        "Paper"
       ]
     },
     {
@@ -1003,8 +1012,10 @@
       "published": "1998-05-01",
       "tags": [
         "Engineering",
+        "Turing Award",
         "Algorithms",
-        "Leslie Lamport"
+        "Leslie Lamport",
+        "Paper"
       ]
     },
     {
@@ -1013,8 +1024,10 @@
       "published": null,
       "tags": [
         "Engineering",
+        "Turing Award",
         "Algorithms",
-        "Leslie Lamport"
+        "Leslie Lamport",
+        "Paper"
       ]
     },
     {
@@ -1244,7 +1257,8 @@
       "tags": [
         "Engineering",
         "Information Theory",
-        "Claude Shannon"
+        "Claude Shannon",
+        "Paper"
       ]
     },
     {
@@ -1253,8 +1267,10 @@
       "published": null,
       "tags": [
         "Engineering",
+        "Turing Award",
         "Distributed Systems",
-        "Leslie Lamport"
+        "Leslie Lamport",
+        "Paper"
       ]
     },
     {
@@ -1263,8 +1279,10 @@
       "published": null,
       "tags": [
         "Engineering",
+        "Turing Award",
         "Systems Design",
-        "Butler Lampson"
+        "Butler Lampson",
+        "Paper"
       ]
     },
     {
@@ -1273,9 +1291,11 @@
       "published": null,
       "tags": [
         "Engineering",
+        "Turing Award",
         "History",
         "Butler Lampson",
-        "Jevons Paradox"
+        "Jevons Paradox",
+        "Paper"
       ]
     },
     {
@@ -1284,8 +1304,10 @@
       "published": null,
       "tags": [
         "Engineering",
+        "Turing Award",
         "Verification",
-        "C.A.R. Hoare"
+        "C.A.R. Hoare",
+        "Paper"
       ]
     },
     {
@@ -1296,7 +1318,186 @@
         "Engineering",
         "AWS",
         "Serverless",
-        "Operating Systems"
+        "Operating Systems",
+        "Paper"
+      ]
+    },
+    {
+      "title": "Turing Award winner Barbara Liskov interviewed about data abstraction, Dijkstra, and distributed systems",
+      "url": "https://www.developing.dev/p/turing-award-winner-data-abstraction",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-peterman-pod/id1777363835?i=1000763787598",
+      "published": "2026-04-27",
+      "tags": [
+        "Engineering",
+        "Turing Award",
+        "Distributed Systems",
+        "History",
+        "Barbara Liskov",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Bryan Cantrill: The peril of laziness lost - LLMs lack the virtuous laziness that drives good abstraction",
+      "url": "https://bcantrill.dtrace.org/2026/04/12/the-peril-of-laziness-lost/",
+      "published": "2026-04-12",
+      "tags": [
+        "Engineering",
+        "AI",
+        "LLM",
+        "Complexity",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Turing Award winner Mike Stonebraker interviewed about Postgres, disagreeing with Google, and future problems",
+      "url": "https://www.developing.dev/p/turing-award-winner-postgres-disagreeing",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-peterman-pod/id1777363835?i=1000762376752",
+      "published": "2026-04-20",
+      "tags": [
+        "Engineering",
+        "Turing Award",
+        "Databases",
+        "Postgres",
+        "History",
+        "Mike Stonebraker",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "The a16z Show: Accelerate book authors on DevOps, company culture, and change",
+      "url": "https://a16z.simplecast.com/episodes/a16z-podcast-feedback-loops-company-culture-change-and-devops-jfDYhdUM",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-a16z-show/id842818711?i=1000407698712",
+      "published": "2018-03-28",
+      "tags": [
+        "Engineering",
+        "DevOps",
+        "Accelerate",
+        "Continuous Delivery",
+        "Culture",
+        "DORA",
+        "Nicole Forsgren",
+        "Jez Humble",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Darknet Diaries: Deviant - physical penetration testing",
+      "url": "https://darknetdiaries.com/episode/134/",
+      "published": "2023-06-06",
+      "tags": [
+        "Engineering",
+        "Security",
+        "Physical Security",
+        "Penetration Testing",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Go Time: Principles of Simplicity with Sam Boyer",
+      "url": "https://changelog.com/gotime/296",
+      "published": "2023-11-08",
+      "tags": [
+        "Engineering",
+        "Simplicity",
+        "Golang",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Steve Yegge: Execution in the Kingdom of Nouns (a Java parable on noun-oriented programming)",
+      "url": "https://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html",
+      "alternate-url": "https://web.archive.org/web/20260731085437/https://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html",
+      "published": "2006-03-30",
+      "tags": [
+        "Engineering",
+        "Software Engineering",
+        "Steve Yegge",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Artem Zakirullin: Cognitive Load Is What Matters",
+      "url": "https://minds.md/zakirullin/cognitive",
+      "alternate-url": "https://web.archive.org/web/20260705061101/https://minds.md/zakirullin/cognitive",
+      "published": "2023-05-19",
+      "tags": [
+        "Engineering",
+        "Software Engineering",
+        "Complexity",
+        "Article"
+      ]
+    },
+    {
+      "title": "Christian Kästner: Feature Flags vs Configuration Options - Same Difference?",
+      "url": "https://www.cs.cmu.edu/~ckaestne/featureflags/",
+      "alternate-url": "https://web.archive.org/web/20260217001612/https://www.cs.cmu.edu/~ckaestne/featureflags/",
+      "published": "2019-05-20",
+      "tags": [
+        "Engineering",
+        "Software Engineering",
+        "Best Practices",
+        "Feature Flags",
+        "Article"
+      ]
+    },
+    {
+      "title": "Netflix: Artwork Personalization at Netflix (contextual bandits)",
+      "url": "https://netflixtechblog.com/artwork-personalization-c589f074ad76",
+      "alternate-url": "https://web.archive.org/web/20250516025317/https://netflixtechblog.com/artwork-personalization-c589f074ad76",
+      "published": "2017-12-07",
+      "tags": [
+        "Engineering",
+        "Netflix",
+        "Machine Learning",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Database Fundamentals (ACID, storage engines, B-trees vs LSM trees, distributed systems)",
+      "url": "https://tontinton.com/posts/database-fundementals/",
+      "alternate-url": "https://web.archive.org/web/20260606041140/https://tontinton.com/posts/database-fundementals/",
+      "published": "2023-12-15",
+      "tags": [
+        "Engineering",
+        "Databases",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Pragmatic Engineer: How Microsoft Does Quality Assurance (QA) - the SDET role and its 2014 retirement",
+      "url": "https://blog.pragmaticengineer.com/how-microsoft-does-qa/",
+      "alternate-url": "https://web.archive.org/web/20260420101812/https://blog.pragmaticengineer.com/how-microsoft-does-qa/",
+      "published": "2023-09-19",
+      "tags": [
+        "Engineering",
+        "Quality",
+        "Testing",
+        "Microsoft",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Maxwell Krohn: Building Secure High-Performance Web Services with OKWS (USENIX 2004)",
+      "url": "https://pdos.csail.mit.edu/papers/okws-usenix04.pdf",
+      "alternate-url": "https://web.archive.org/web/20250512124951/https://pdos.csail.mit.edu/papers/okws-usenix04.pdf",
+      "published": "2004-06-01",
+      "tags": [
+        "Engineering",
+        "Architecture",
+        "Scalability",
+        "Paper"
+      ]
+    },
+    {
+      "title": "Bright Journey: Why Would OkCupid Write Their Own Web Server? (answered by co-founder Chris Coyne)",
+      "url": "https://web.archive.org/web/20250906201441/http://www.brightjourney.com/q/okcupid-write-web-server",
+      "alternate-url": "https://www.brightjourney.com/q/okcupid-write-web-server",
+      "published": "2011-03-10",
+      "tags": [
+        "Engineering",
+        "Architecture",
+        "Scalability",
+        "Article"
       ]
     }
   ]

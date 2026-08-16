@@ -78,9 +78,10 @@ export function buildDomainStats(links: readonly LinkRecord[], selectedTags: rea
     });
 }
 
-export default function SourcesSection({ links, selectedTags = [] }: {
+export default function SourcesSection({ links, selectedTags = [], showHeading = true }: {
   links: LinkRecord[];
   selectedTags?: TagRecord[];
+  showHeading?: boolean;
 }) {
   const [expandedDomains, setExpandedDomains] = useState<Set<string>>(() => new Set());
   const domainStats = useMemo(
@@ -103,9 +104,11 @@ export default function SourcesSection({ links, selectedTags = [] }: {
   if (domainStats.length === 0) {
     return (
       <Box sx={{ mt: 4 }}>
-        <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
-          Content Sources
-        </Typography>
+        {showHeading ? (
+          <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+            Content Sources
+          </Typography>
+        ) : null}
         <Typography variant="body2" color="text.secondary">
           No sources available yet.
         </Typography>
@@ -115,12 +118,16 @@ export default function SourcesSection({ links, selectedTags = [] }: {
 
   return (
     <Box>
-      <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
-        Content Sources
-      </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-        Domains sorted by frequency of appearance
-      </Typography>
+      {showHeading ? (
+        <>
+          <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+            Content Sources
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            Domains sorted by frequency of appearance
+          </Typography>
+        </>
+      ) : null}
       <Box>
         {domainStats.map((stat, index) => {
           const isExpanded = expandedDomains.has(stat.domain);

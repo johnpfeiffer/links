@@ -54,7 +54,12 @@ function TestHomePage() {
 
   return (
     <>
-      <LinksSection app={app} links={filteredLinks} enabledTags={enabledTags} />
+      <LinksSection
+        app={app}
+        links={filteredLinks}
+        enabledTags={enabledTags}
+        tags={allTags}
+      />
       <div data-testid="location">{location.pathname}</div>
     </>
   );

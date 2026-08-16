@@ -3,6 +3,8 @@ export interface TagRecord {
   key: string;
 }
 
+export type TagRouteNamespace = "tags" | "sources";
+
 export interface LinkRecord {
   id: string;
   url: string;
@@ -15,7 +17,7 @@ export interface LinkRecord {
 
 export interface ParsedUrlPath {
   app: string;
-  routeNamespace: "default" | "tags" | "sources";
+  routeNamespace: "default" | TagRouteNamespace;
   view: "links" | "sources";
   tags: TagRecord[];
 }

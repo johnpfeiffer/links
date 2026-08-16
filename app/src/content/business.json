@@ -16,7 +16,7 @@
     {
       "title": "The Social Radar: Y Combinator's secret weapon with Jessica Livingston",
       "url": "https://www.lennysnewsletter.com/p/the-social-radar-jessica-livingston",
-      "published": null,
+      "published": "2024-06-27",
       "tags": [
         "Business",
         "Startups",
@@ -133,7 +133,7 @@
     {
       "title": "HBR How venture capital works (Bob Zider 1998)",
       "url": "https://hbr.org/1998/11/how-venture-capital-works",
-      "published": null,
+      "published": "1998-11-01",
       "tags": [
         "Business",
         "VC",
@@ -158,6 +158,66 @@
         "Business",
         "VC",
         "Video"
+      ]
+    },
+    {
+      "title": "Invest Like the Best: A Conversation with Charlie Munger & John Collison (EP.355)",
+      "url": "https://joincolossus.com/episodes/76168278/munger-a-conversation-with-charlie-munger-john-collison",
+      "published": "2023-12-05",
+      "tags": [
+        "Business",
+        "Investing",
+        "Charlie Munger",
+        "Decision Making",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Invest Like the Best: Founder vs Investor with Elizabeth Zalman & Jerry Neumann (EP.351)",
+      "url": "https://joincolossus.com/episodes/90886887/zalman-founder-vs-investor",
+      "published": "2023-11-07",
+      "tags": [
+        "Business",
+        "Startups",
+        "VC",
+        "Founder",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Joel on Software: Strategy Letter V - commoditize your complement",
+      "url": "https://www.joelonsoftware.com/2002/06/12/strategy-letter-v/",
+      "alternate-url": "https://web.archive.org/web/20260728165453/https://www.joelonsoftware.com/2002/06/12/strategy-letter-v/",
+      "published": "2002-06-12",
+      "tags": [
+        "Business",
+        "Strategy",
+        "Open Source",
+        "Joel Spolsky",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Good to Great by Jim Collins (successful businesses use flywheels, great people, and focus)",
+      "url": "https://www.jimcollins.com/article_topics/articles/good-to-great.html",
+      "alternate-url": "https://en.wikipedia.org/wiki/Good_to_Great",
+      "published": "2001-10-16",
+      "tags": [
+        "Business",
+        "Leadership",
+        "Management",
+        "Book"
+      ]
+    },
+    {
+      "title": "Stratechery: Meta (Facebook rebrands and an Alphabet-style reorg - surprising without mention of the toxic brand)",
+      "url": "https://stratechery.com/2021/meta/",
+      "alternate-url": "https://web.archive.org/web/20260202094031/https://stratechery.com/2021/meta/",
+      "published": "2021-10-28",
+      "tags": [
+        "Business",
+        "Strategy",
+        "Article"
       ]
     }
   ]

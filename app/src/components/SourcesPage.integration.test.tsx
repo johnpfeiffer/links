@@ -95,7 +95,7 @@ async function renderSourcesRoute(initialPath) {
     globalThis.Request = OriginalRequest;
   };
 
-  return { container, cleanup };
+  return { container, router, cleanup };
 }
 
 describe("SourcesPage namespace integration", () => {
@@ -117,6 +117,58 @@ describe("SourcesPage namespace integration", () => {
     );
 
     expect(backLink?.getAttribute("href")).toBe("/links/tags");
+
+    await cleanup();
+  });
+
+  it("shows shared tag controls with removable selected tags and the filtered link count", async () => {
+    const { container, router, cleanup } = await renderSourcesRoute("/links/sources/ai/podcast");
+    const tagFilters = container.querySelector('[data-testid="tag-filters"]');
+    const selectedTags = container.querySelector('[data-testid="selected-tags"]');
+    const linkCount = container.querySelector('[data-testid="link-count"]');
+
+    expect(tagFilters?.textContent).toContain("Show all tags");
+    expect(selectedTags?.textContent).toContain("Filtered by");
+    expect(selectedTags?.textContent).toContain("AI");
+    expect(selectedTags?.textContent).toContain("Podcast");
+    expect(linkCount?.textContent).toContain("Showing 1 links");
+
+    const aiTag = Array.from(selectedTags?.querySelectorAll("a") ?? []).find(
+      (anchor) => anchor.textContent?.trim() === "AI"
+    );
+    expect(aiTag?.getAttribute("href")).toBe("/links/sources/podcast");
+
+    await act(async () => {
+      aiTag?.dispatchEvent(
+        new MouseEvent("click", { bubbles: true, cancelable: true, button: 0 })
+      );
+    });
+
+    expect(router.state.location.pathname).toBe("/links/sources/podcast");
+
+    await cleanup();
+  });
+
+  it("expands all tags and adds a tag within the sources namespace", async () => {
+    const { container, cleanup } = await renderSourcesRoute("/links/sources/ai");
+    const tagFilters = container.querySelector('[data-testid="tag-filters"]');
+    const summary = tagFilters?.querySelector('[aria-expanded="false"]');
+
+    expect(summary).toBeTruthy();
+
+    await act(async () => {
+      summary?.dispatchEvent(
+        new MouseEvent("click", { bubbles: true, cancelable: true, button: 0 })
+      );
+    });
+
+    expect(summary?.getAttribute("aria-expanded")).toBe("true");
+    expect(tagFilters?.textContent).toContain("Hide all tags");
+
+    const podcastTag = Array.from(tagFilters?.querySelectorAll("a") ?? []).find(
+      (anchor) => anchor.textContent?.trim() === "Podcast"
+    );
+    expect(podcastTag?.getAttribute("href")).toBe("/links/sources/ai/podcast");
 
     await cleanup();
   });
