@@ -1499,6 +1499,143 @@
         "Scalability",
         "Article"
       ]
+    },
+    {
+      "title": "Stripe: Scaling your API with rate limiters",
+      "url": "https://stripe.com/blog/rate-limiters",
+      "alternate-url": "https://web.archive.org/web/20260803014506/https://stripe.com/blog/rate-limiters",
+      "published": "2017-03-30",
+      "tags": [
+        "Engineering",
+        "Scalability",
+        "Stripe",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Quastor: How Netflix Implements Load Shedding",
+      "url": "https://web.archive.org/web/20251213193518/https://blog.quastor.org/p/netflix-implements-load-shedding",
+      "alternate-url": "https://blog.quastor.org/p/netflix-implements-load-shedding",
+      "published": "2022-08-23",
+      "tags": [
+        "Engineering",
+        "Scalability",
+        "Netflix",
+        "Blog"
+      ]
+    },
+    {
+      "title": "An Introduction to Computer Networks: Token Bucket Rate Limiting (Peter Dordal)",
+      "url": "https://intronetworks.cs.luc.edu/current/html/tokenbucket.html",
+      "alternate-url": "https://web.archive.org/web/20251007210626/https://intronetworks.cs.luc.edu/current/html/tokenbucket.html",
+      "published": null,
+      "tags": [
+        "Engineering",
+        "Networking",
+        "Scalability",
+        "Article"
+      ]
+    },
+    {
+      "title": "HN Discussion: What are some examples of good database schema designs?",
+      "url": "https://news.ycombinator.com/item?id=22324691",
+      "published": "2020-02-14",
+      "tags": [
+        "Engineering",
+        "Databases"
+      ]
+    },
+    {
+      "title": "The Scale: Talking Microservices with the Man Who Made Netflix's Cloud Famous (Adrian Cockcroft)",
+      "url": "https://medium.com/s-c-a-l-e/talking-microservices-with-the-man-who-made-netflix-s-cloud-famous-1032689afed3",
+      "alternate-url": "https://web.archive.org/web/20151028201630/https://medium.com/s-c-a-l-e/talking-microservices-with-the-man-who-made-netflix-s-cloud-famous-1032689afed3",
+      "published": "2015-05-30",
+      "tags": [
+        "Engineering",
+        "Microservices",
+        "Netflix",
+        "Adrian Cockcroft",
+        "Article"
+      ]
+    },
+    {
+      "title": "GOTO 2017: Cloud Trends (Adrian Cockcroft keynote; culture, Netflix cloud migration, monoliths to microservices)",
+      "url": "https://www.youtube.com/watch?v=EDZBYbEwhm8",
+      "published": "2017-06-01",
+      "tags": [
+        "Engineering",
+        "Microservices",
+        "Adrian Cockcroft",
+        "Video"
+      ]
+    },
+    {
+      "title": "Nabeel Qureshi: Reflections on Palantir (Forward Deployed Engineering)",
+      "url": "https://nabeelqu.substack.com/p/reflections-on-palantir",
+      "published": "2024-10-15",
+      "tags": [
+        "Engineering",
+        "Palantir",
+        "Forward Deployed Engineering",
+        "Blog"
+      ]
+    },
+    {
+      "title": "ACM Queue: Zero Tolerance for Bias (unbiased shuffling; PRNG seed and modulo bias)",
+      "url": "https://queue.acm.org/detail.cfm?id=3664645",
+      "published": "2024-05-29",
+      "tags": [
+        "Engineering",
+        "Algorithms",
+        "Probability",
+        "Article"
+      ]
+    },
+    {
+      "title": "NIST DADS: Ideal Random Shuffle",
+      "url": "https://xlinux.nist.gov/dads/HTML/idealRandomShuffle.html",
+      "published": "2021-10-04",
+      "tags": [
+        "Engineering",
+        "Algorithms",
+        "Probability",
+        "Article"
+      ]
+    },
+    {
+      "title": "NeetCode: Why do companies lay off their best engineers? Vasilios Syrakis on the Atlassian layoffs and engineering as tradeoffs",
+      "url": "https://www.youtube.com/watch?v=s4EOVsBO7Ck",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/why-do-companies-lay-off-their-best-engineers-w-vasilios/id1867041268?i=1000772850033",
+      "published": "2026-06-15",
+      "tags": [
+        "Engineering",
+        "Architecture",
+        "Layoffs",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "ELC: Rapid prototyping and developing your product instinct with David Crawshaw",
+      "url": "https://sfelc.com/podcasts/rapid-prototyping-and-developing-your-product-instinct-david-crawshaw",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/rapid-prototyping-developing-your-product-instinct/id1481996448?i=1000617768828",
+      "published": "2023-06-20",
+      "tags": [
+        "Engineering",
+        "Product Management",
+        "Quality",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "SE Radio: Murat Erder and Eoin Woods on Continuous Architecture",
+      "url": "https://se-radio.net/2026/01/se-radio-705-murat-erder-and-eoin-woods-on-continuous-architecture/",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/software-engineering-radio-the-podcast-for/id120906714?i=1000746934669",
+      "published": "2026-01-27",
+      "tags": [
+        "Engineering",
+        "Architecture",
+        "Podcast"
+      ]
     }
   ]
 }

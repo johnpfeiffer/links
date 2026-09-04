@@ -2095,6 +2095,7 @@
         "Kent Beck",
         "Incentives",
         "Culture",
+        "Facebook",
         "Engineering Management",
         "Video"
       ]
@@ -2588,6 +2589,8 @@
         "People",
         "Hiring",
         "Culture",
+        "Paypal",
+        "Startup",
         "Blog"
       ]
     },
@@ -2598,6 +2601,10 @@
       "tags": [
         "People",
         "Career Development",
+        "Facebook",
+        "Netflix",
+        "Google",
+        "Amazon",
         "Video"
       ]
     },
@@ -2648,6 +2655,218 @@
         "People",
         "Organization",
         "Leadership",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Mode: Facebook's 'Aha' Moment Was Simpler Than You Think (Benn Stancil) - Product Market Fit and Retention",
+      "url": "https://mode.com/blog/facebook-aha-moment-simpler-than-you-think/",
+      "alternate-url": "https://web.archive.org/web/20260801182325/https://mode.com/blog/facebook-aha-moment-simpler-than-you-think/",
+      "published": "2015-01-30",
+      "tags": [
+        "People",
+        "Product Management",
+        "Growth",
+        "Facebook",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Reforge: How to Write a PRD That Actually Helps You Build Products (evolving PRDs)",
+      "url": "https://www.reforge.com/blog/evolving-product-requirement-documents",
+      "alternate-url": "https://web.archive.org/web/20250305053640/https://www.reforge.com/blog/evolving-product-requirement-documents",
+      "published": "2022-11-08",
+      "tags": [
+        "People",
+        "Product Management",
+        "Blog"
+      ]
+    },
+    {
+      "title": "HBR: Crucibles of Leadership (Bennis & Thomas: shared meaning, authentic voice, integrity, adaptive capacity)",
+      "url": "https://hbr.org/2002/09/crucibles-of-leadership",
+      "alternate-url": "https://web.archive.org/web/20221101090235/https://hbr.org/2002/09/crucibles-of-leadership",
+      "published": "2002-09-01",
+      "tags": [
+        "People",
+        "Leadership",
+        "Article"
+      ]
+    },
+    {
+      "title": "Shreyas Doshi: AI and Product Management (1-hour compilation of his videos on PM adapting to AI)",
+      "url": "https://www.youtube.com/watch?v=2M56QjV4nWw",
+      "published": "2026-01-14",
+      "tags": [
+        "People",
+        "Product Management",
+        "AI",
+        "Shreyas Doshi",
+        "Video"
+      ]
+    },
+    {
+      "title": "Tech With Tim: How To Pass Coding Interviews Like the Top 1%",
+      "url": "https://www.youtube.com/watch?v=FNL61tvwBUg",
+      "published": "2025-07-17",
+      "tags": [
+        "People",
+        "Interviewing",
+        "Career Development",
+        "Video"
+      ]
+    },
+    {
+      "title": "Andrew Hu: How To Pass Technical Interviews When You Suck At LeetCode",
+      "url": "https://www.youtube.com/watch?v=ajI9R-6saEk",
+      "published": "2020-12-09",
+      "tags": [
+        "People",
+        "Interviewing",
+        "Career Development",
+        "Video"
+      ]
+    },
+    {
+      "title": "Retired Amazon VP Ethan Evans on how corporate politics work and how to win",
+      "url": "https://www.developing.dev/p/amazon-vp-reveals-everything-hes",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/retired-amazon-vp-how-corporate-politics-work-and-how/id1777363835?i=1000758223897",
+      "published": "2026-03-30",
+      "tags": [
+        "People",
+        "Career Development",
+        "Influence",
+        "Amazon",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Level-up Engineering: Guide to building cross-functional collaboration in software engineering (Ritendra Datta on empathy sessions)",
+      "url": "https://web.archive.org/web/20241005041649/https://codingsans.com/blog/cross-functional-collaboration",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/guide-to-building-cross-functional-collaboration-in/id1482889491?i=1000574913111",
+      "published": "2022-08-03",
+      "tags": [
+        "People",
+        "Collaboration",
+        "Communication",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "In Depth: The human side of world-class engineering leadership with Michael Lopp (Rands)",
+      "url": "https://review.firstround.com/podcast/the-human-side-of-world-class-engineering-leadership-michael-lopp-apple-palantir-slack/",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-human-side-of-world-class-engineering/id1535886300?i=1000642904091",
+      "published": "2024-01-25",
+      "tags": [
+        "People",
+        "Engineering Management",
+        "Leadership",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Why founders should invest in coaching, communication and leadership mechanisms before you scale (James Birchler)",
+      "url": "https://sfelc.com/podcasts/why-founders-should-invest-in-coaching-communication-and-leadership-mechanisms-before-you-scale-james-birchler",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/why-founders-should-invest-in-coaching-communication/id1481996448?i=1000749141803",
+      "published": "2026-02-10",
+      "tags": [
+        "People",
+        "Coaching",
+        "Leadership",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "In Depth: Why the transition from IC engineer to manager is so tricky (Marcel Weekes)",
+      "url": "https://review.firstround.com/podcast/why-is-the-transition-from-ic-engineer-to-manager-so-tricky-and-how-to-get-it-right-marcel-weekes-vp-of-product-engineering-at-figma/",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/why-is-the-transition-from-ic-engineer-to-manager-so/id1535886300?i=1000614435559",
+      "published": "2023-05-25",
+      "tags": [
+        "People",
+        "Engineering Management",
+        "Career Transition",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Wes Kao: Question Behind the Question",
+      "url": "https://newsletter.weskao.com/p/question-behind-the-question",
+      "published": "2023-11-29",
+      "tags": [
+        "People",
+        "Communication",
+        "Managing Up",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Addy Osmani: 14 More Lessons from 14 years at Google",
+      "url": "https://addyosmani.com/blog/14-more-lessons/",
+      "published": "2026-02-12",
+      "tags": [
+        "People",
+        "Leadership",
+        "Team",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Peterman Pod: Retired Netflix engineering director David Ronca on regrets, video engineering, and hiring stories",
+      "url": "https://www.developing.dev/p/retired-netflix-engineering-director",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-peterman-pod/id1777363835?i=1000749958027",
+      "published": "2026-02-16",
+      "tags": [
+        "People",
+        "Engineering Management",
+        "Hiring",
+        "Netflix",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Radical Candor: The 7 Hidden Beliefs That Hold Leaders Back (Muriel Wilkins)",
+      "url": "https://www.radicalcandor.com/podcast/hidden-beliefs",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/radical-candor-communication-at-work/id1188489488?i=1000749187196",
+      "published": "2026-02-11",
+      "tags": [
+        "People",
+        "Leadership",
+        "Coaching",
+        "Radical Candor",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Managers Club: Get and pass the engineering leadership interview with Kyle Cooper (Meta recruiter)",
+      "url": "https://www.managersclub.com/posts/pass-engineer-leadership-interview-kyle-cooper-leadership-recruiter-meta",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/managers-club-interviews-and-resources-for/id1465515449?i=1000550942713",
+      "published": "2022-02-13",
+      "tags": [
+        "People",
+        "Interviewing",
+        "Career Development",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Interviewing.io: How software engineering behavioral interviews are evaluated at Meta (Lior Neu-ner)",
+      "url": "https://interviewing.io/blog/how-software-engineering-behavioral-interviews-are-evaluated-meta",
+      "published": "2023-02-13",
+      "tags": [
+        "People",
+        "Interviewing",
+        "Hiring",
+        "Blog"
+      ]
+    },
+    {
+      "title": "Tech Interview Handbook: Behavioral interviews for software engineers",
+      "url": "https://www.techinterviewhandbook.org/behavioral-interview/",
+      "published": null,
+      "tags": [
+        "People",
+        "Interviewing",
+        "Career Development",
         "Blog"
       ]
     }

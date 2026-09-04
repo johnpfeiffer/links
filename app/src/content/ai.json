@@ -372,6 +372,38 @@
         "LLM",
         "Article"
       ]
+    },
+    {
+      "title": "Gradient Dissent: Most AI Startups Are Scaling Into Bankruptcy (Lin Qiao, CEO of Fireworks)",
+      "url": "https://www.youtube.com/watch?v=Tf7DEYfZc0g",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/40-trillion-tokens-a-day-yes-more-than-openai-lin/id1504567418?i=1000779889469",
+      "published": "2026-08-03",
+      "tags": [
+        "AI",
+        "Startups",
+        "FireworksAI",
+        "Video"
+      ]
+    },
+    {
+      "title": "eferro: Encoding Experience into AI Skills",
+      "url": "https://www.eferro.net/2026/03/encoding-experience-into-ai-skills.html",
+      "alternate-url": "https://web.archive.org/web/20260313024600/https://www.eferro.net/2026/03/encoding-experience-into-ai-skills.html",
+      "published": "2026-03-01",
+      "tags": [
+        "AI",
+        "Agents",
+        "Blog"
+      ]
+    },
+    {
+      "title": "The Weekly Show with Jon Stewart: AI, What Could Go Wrong? with Geoffrey Hinton",
+      "url": "https://www.youtube.com/watch?v=jrK3PsD3APk",
+      "published": "2025-10-09",
+      "tags": [
+        "AI",
+        "Video"
+      ]
     }
   ]
 }

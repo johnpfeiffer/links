@@ -1,0 +1,236 @@
+# Links Application Test Scenarios
+
+Feature: Landing and Initial Navigation
+  As a user
+  I want to land on the links application
+  So that I can browse curated links
+
+  Scenario: Landing on root path
+    Given I navigate to "/"
+    Then I should be redirected to "/all"
+    And I should see "All Links" as the page title
+    And the "All" category button should be highlighted
+
+  Scenario: Landing directly on a valid category
+    Given I navigate to "/engineering"
+    Then I should see "Engineering Links" as the page title
+    And the "Engineering" category button should be highlighted
+    And I should only see links from the Engineering category
+
+  Scenario: Landing on invalid path
+    Given I navigate to "/invalid-category"
+    Then I should be redirected to "/all"
+    And the "All" category button should be highlighted
+
+  Scenario: Landing on category with trailing path
+    Given I navigate to "/business/random/stuff"
+    Then I should see "Business Links" as the page title
+    And the trailing path should be ignored
+    And the "Business" category button should be highlighted
+
+Feature: Category Navigation
+  As a user
+  I want to switch between categories
+  So that I can browse links by topic
+
+  Background:
+    Given the app has loaded with categories: All, AI, Business, Engineering, History, People, Sources
+
+  Scenario: Switching from All to a specific category
+    Given I am on "/all"
+    When I click the "Business" category button
+    Then the URL should change to "/business"
+    And I should see "Business Links" as the page title
+    And only Business links should be displayed
+
+  Scenario: Switching between specific categories
+    Given I am on "/engineering"
+    When I click the "History" category button
+    Then the URL should change to "/history"
+    And the "History" category button should be highlighted
+    And the "Engineering" category button should not be highlighted
+
+  Scenario: Returning to All category
+    Given I am on "/business"
+    When I click the "All" category button
+    Then the URL should change to "/all"
+    And I should see links from all categories
+
+  Scenario: Category order display
+    Given I am on any page
+    Then the category buttons should appear in order:
+      | All | AI | Business | Engineering | History | People | Sources |
+    And "All" should always be first
+    And "Sources" should always be last
+
+Feature: Tag Filtering
+  As a user
+  I want to filter links by tags
+  So that I can find specific types of content
+
+  Background:
+    Given I am viewing a category with links containing tags
+
+  Scenario: Viewing available tags
+    When I look at the sidebar
+    Then I should see all unique tags from the current links
+    And tags should be sorted alphabetically
+
+  Scenario: Selecting a single tag filter
+    Given I see links with tags "Podcast", "Blog", "Video"
+    When I click the "Podcast" tag in the sidebar
+    Then the "Podcast" tag should be highlighted in the sidebar
+    And only links containing "Podcast" tag should be displayed
+    And the link count should update to show filtered results
+
+  Scenario: Selecting multiple tag filters (OR logic)
+    Given I have selected the "Podcast" tag
+    When I click the "Blog" tag
+    Then both "Podcast" and "Blog" tags should be highlighted
+    And links with either "Podcast" OR "Blog" tags should be displayed
+
+  Scenario: Tag highlighting on filtered links
+    Given I have selected the "Golang" tag filter
+    Then links containing "Golang" should have that tag highlighted
+    And other tags on those links should not be highlighted
+
+  Scenario: Clicking tag on a link item
+    When I click a tag directly on a link item
+    Then that tag should be added to the active filters
+    And the sidebar filter should reflect this selection
+
+  Scenario: Clearing tag filters
+    Given I have selected multiple tags
+    When I click "Clear Filters"
+    Then all tag selections should be removed
+    And all links in the category should be displayed
+    And the "Clear Filters" button should disappear
+
+Feature: Sources View
+  As a user
+  I want to see all content sources
+  So that I can understand where links come from
+
+  Scenario: Navigating to Sources
+    Given I am on any category page
+    When I click the "Sources" category button
+    Then the URL should change to "/sources"
+    And I should see "Content Sources" as the title
+    And I should see "Domains sorted by frequency of appearance" subtitle
+
+  Scenario: Sources display order
+    Given I am on "/sources"
+    Then domains should be listed by frequency (highest first)
+    And each domain should show:
+      | Rank number (#1, #2, etc.) |
+      | Domain name as clickable link |
+      | Count of links from that domain |
+
+  Scenario: Expanding a domain
+    Given I am on "/sources"
+    And I see a collapsed domain entry
+    When I click the expand arrow
+    Then the arrow should change from "▶" to "▼"
+    And I should see all links from that domain listed below
+    And each link should be clickable
+
+  Scenario: Collapsing an expanded domain
+    Given I have expanded a domain
+    When I click the collapse arrow
+    Then the arrow should change from "▼" to "▶"
+    And the links should be hidden
+
+  Scenario: Multiple domain expansions
+    Given I am on "/sources"
+    When I expand multiple domains
+    Then each expanded domain should show its links
+    And unexpanded domains should remain collapsed
+
+Feature: Link Display and Interaction
+  As a user
+  I want to interact with individual links
+  So that I can access the content
+
+  Scenario: Link display format
+    Given I am viewing any category with links
+    Then each link should display:
+      | Title as clickable text |
+      | Associated tags below the title |
+    And the link count should show total filtered links
+
+  Scenario: Opening a link
+    When I click on a link title
+    Then the link should open in a new tab
+    And the link should have rel="noopener noreferrer" for security
+
+Feature: Data Loading and Error Handling
+  As a developer
+  I want the app to handle data issues gracefully
+  So that users have a good experience
+
+  Scenario: Loading state
+    Given the app is starting up
+    Then I should see "Loading..." message
+    Until categories have been loaded
+
+  Scenario: Invalid JSON file
+    Given a JSON file has invalid syntax
+    Then the console should log an error
+    And other valid categories should still load
+    And the app should continue functioning
+
+  Scenario: Link with missing required fields
+    Given a JSON file contains a link without url or title
+    Then that link should be skipped
+    And a warning should be logged to console
+    And valid links should still be displayed
+
+  Scenario: Duplicate tags on a single link
+    Given a link has duplicate tags in the JSON
+    Then the duplicates should be removed
+    And only unique tags should be displayed
+
+Feature: Browser Navigation
+  As a user
+  I want to use browser controls
+  So that I can navigate naturally
+
+  Scenario: Using back button
+    Given I navigated from "/all" to "/business" to "/engineering"
+    When I click the browser back button
+    Then I should return to "/business"
+    And the "Business" category should be highlighted
+
+  Scenario: Using forward button
+    Given I used the back button from "/engineering"
+    When I click the browser forward button
+    Then I should return to "/engineering"
+    And the "Engineering" category should be highlighted
+
+  Scenario: Direct URL entry
+    When I type "/history" directly in the address bar
+    Then I should see the History category
+    And the app should load correctly
+
+Feature: Production Deployment (Base Path Handling)
+  As a production user
+  I want the app to work correctly when deployed at /links
+  So that navigation doesn't break
+
+  Scenario: Production landing
+    Given the app is deployed with base href="/links/"
+    When I navigate to "/links/business"
+    Then I should see the Business category
+    And internal navigation should maintain the /links prefix
+
+  Scenario: Production category switching
+    Given I am on "/links/all" in production
+    When I click "Engineering"
+    Then the URL should be "/links/engineering"
+    Not "/engineering" which would be a 404
+
+  Scenario: Production Sources navigation
+    Given I am on "/links/business" in production
+    When I click "Sources"
+    Then the URL should be "/links/sources"
+    And the sources view should load correctly
