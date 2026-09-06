@@ -2,6 +2,26 @@
 
 This document records derived implementation facts. `/KERNEL/` remains the authority.
 
+## Material UI runtime
+
+`@mui/material` and `@mui/icons-material` are pinned together at `9.4.0` in
+`app/package.json`. The lockfile resolves the MUI system, styling engine, theme,
+types, and utilities to `9.4.0`, with `react-is` matching React `19.2.8`.
+Emotion remains the styling engine. `App` supplies the shared `ThemeProvider`
+and `CssBaseline`; pages use `sx` for layout and the chat input uses
+`slotProps.htmlInput` for its character limit. No component API changes were
+needed to complete the 9.2-to-9.4 dependency update.
+
+Validation on 2026-09-06: `rtk npm run check` passed strict typechecking,
+all 73 tests across 16 files, and the Vite production build. Browser smoke
+checks verified content loading, tag filtering, expansion of both tag and
+source accordions, and chat input enabling the Send button. Existing integration tests cover chat submission and the
+three-answer limit using mocked API responses.
+
+The build retains its existing warning for the approximately 532 kB main chunk.
+`npm audit` reports two moderate vulnerable packages in React Router, outside
+the MUI dependency graph; these remain a separate router upgrade follow-up.
+
 ## System Design
 
 ```mermaid
