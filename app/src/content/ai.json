@@ -77,6 +77,7 @@
     {
       "title": "Invest Like the Best: 2024-03 Aravind Srinivas (founder of Perplexity) on Building an Answer Engine",
       "url": "https://joincolossus.com/episode/srinivas-building-an-answer-engine/",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/invest-like-the-best-with-patrick-oshaughnessy/id1154105909?i=1000648050144",
       "published": "2024-03-05",
       "tags": [
         "AI",
@@ -85,8 +86,9 @@
       ]
     },
     {
-      "title": "Invest Like the Best: Bill Gurley and Michael Mauboussi on Putting Theory into Practice - VCs on AI",
+      "title": "Invest Like the Best: Bill Gurley and Michael Mauboussin on Putting Theory into Practice - VCs on AI",
       "url": "https://joincolossus.com/episode/mauboussin-a-meeting-of-the-minds/",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/invest-like-the-best-with-patrick-oshaughnessy/id1154105909?i=1000653305035",
       "published": "2024-04-23",
       "tags": [
         "AI",
@@ -188,7 +190,7 @@
       "published": "2023-06-20",
       "tags": [
         "AI",
-        "Engineering",        
+        "Engineering",
         "Architecture",
         "Article"
       ]
@@ -403,6 +405,240 @@
       "tags": [
         "AI",
         "Video"
+      ]
+    },
+    {
+      "title": "The Pragmatic Engineer: Measuring the impact of AI on software engineering - with Laura Tacho (DX)",
+      "url": "https://newsletter.pragmaticengineer.com/p/measuring-the-impact-of-ai-on-software",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-pragmatic-engineer/id1769051199?i=1000718710555",
+      "published": "2025-07-23",
+      "tags": [
+        "AI",
+        "Productivity",
+        "Metrics",
+        "DX",
+        "Laura Tacho",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Dev Interrupted: The fundamentals of agent-driven software workflows - six trends shaping AI-driven development",
+      "url": "https://linearb.io/dev-interrupted/podcast/the-fundamentals-of-agent-driven-software-workflows",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/dev-interrupted/id1537003676?i=1000716306210",
+      "published": "2025-07-08",
+      "tags": [
+        "AI",
+        "Agents",
+        "Productivity",
+        "Strategy",
+        "LinearB",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "The Pragmatic Engineer: TDD, AI agents and coding with Kent Beck",
+      "url": "https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-pragmatic-engineer/id1769051199?i=1000712458898",
+      "published": "2025-06-11",
+      "tags": [
+        "AI",
+        "LLM",
+        "Testing",
+        "History",
+        "Kent Beck",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "The Pragmatic Engineer: Amazon, Google and Vibe Coding with Steve Yegge",
+      "url": "https://newsletter.pragmaticengineer.com/p/amazon-google-and-vibe-coding-with",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-pragmatic-engineer/id1769051199?i=1000717556804",
+      "published": "2025-07-16",
+      "tags": [
+        "AI",
+        "LLM",
+        "Coding",
+        "Amazon",
+        "Google",
+        "Steve Yegge",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Dev Interrupted: How spec-driven development is changing the rules - AWS' Amit Patel",
+      "url": "https://linearb.io/dev-interrupted/podcast/spec-driven-development-aws-kiro",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/dev-interrupted/id1537003676?i=1000736252405",
+      "published": "2025-11-11",
+      "tags": [
+        "AI",
+        "LLM",
+        "Coding",
+        "AWS",
+        "Amit Patel",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "The Pragmatic Engineer: Beyond Vibe Coding with Addy Osmani",
+      "url": "https://newsletter.pragmaticengineer.com/p/beyond-vibe-coding-with-addy-osmani",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-pragmatic-engineer/id1769051199?i=1000734074401",
+      "published": "2025-10-29",
+      "tags": [
+        "AI",
+        "LLM",
+        "Coding",
+        "Addy Osmani",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Lenny's Podcast: The future of AI in software development with Inbal Shani",
+      "url": "https://www.lennysnewsletter.com/p/the-future-of-ai-in-software-development",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/lennys-podcast-product-career-growth/id1627920305?i=1000637179313",
+      "published": "2023-12-01",
+      "tags": [
+        "AI",
+        "GitHub",
+        "Copilot",
+        "Inbal Shani",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "The Pragmatic Engineer: Building Windsurf with Varun Mohan",
+      "url": "https://newsletter.pragmaticengineer.com/p/building-windsurf-with-varun-mohan",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-pragmatic-engineer/id1769051199?i=1000706692814",
+      "published": "2025-05-07",
+      "tags": [
+        "AI",
+        "LLM",
+        "Coding",
+        "Windsurf",
+        "Varun Mohan",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Dev Interrupted: The End of Specialization? How AI Shapes Modern Dev Teams - Vercel's Lee Robinson",
+      "url": "https://linearb.io/dev-interrupted/podcast/the-end-of-specialization-how-ai-shapes-modern-dev-teams",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/dev-interrupted/id1537003676?i=1000706505028",
+      "published": "2025-05-06",
+      "tags": [
+        "AI",
+        "Engineering",
+        "Vercel",
+        "Lee Robinson",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "Caltech: Lecture 01 - The Learning Problem (Yaser Abu-Mostafa, Learning From Data)",
+      "url": "https://www.youtube.com/watch?v=mbyG85GZ0PI",
+      "published": "2012-08-28",
+      "tags": [
+        "AI",
+        "Machine Learning",
+        "Yaser Abu-Mostafa",
+        "Video"
+      ]
+    },
+    {
+      "title": "DeepLearning.AI: What is a Neural Network? (C1W1L02) - Andrew Ng",
+      "url": "https://www.youtube.com/watch?v=n1l-9lIMW7E",
+      "published": "2017-08-25",
+      "tags": [
+        "AI",
+        "Deep Learning",
+        "Andrew Ng",
+        "Video"
+      ]
+    },
+    {
+      "title": "Princeton Distinguished Colloquium: Jeff Dean - Important Trends in AI",
+      "url": "https://www.youtube.com/watch?v=UTTeXZrpMR0",
+      "published": "2026-02-13",
+      "tags": [
+        "AI",
+        "LLM",
+        "Jeff Dean",
+        "Video"
+      ]
+    },
+    {
+      "title": "Sequoia: When to Build Your Own Agent Harness - Harrison Chase (LangChain)",
+      "url": "https://www.youtube.com/watch?v=HI2q3ci3Iuc",
+      "published": "2026-08-13",
+      "tags": [
+        "AI",
+        "Agents",
+        "LangChain",
+        "Harrison Chase",
+        "Video"
+      ]
+    },
+    {
+      "title": "Dev Interrupted: Inventing the Ralph Wiggum Loop (Geoffrey Huntley)",
+      "url": "https://linearb.io/dev-interrupted/podcast/inventing-the-ralph-wiggum-loop",
+      "published": "2026-01-13",
+      "tags": [
+        "AI",
+        "Agents",
+        "Context Engineering",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "The Changelog: Storytime with Steve Yegge (Changelog Interviews #549)",
+      "url": "https://changelog.com/podcast/549",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-changelog-software-development-open-source/id341623264?i=1000621843052",
+      "published": "2023-07-20",
+      "tags": [
+        "AI",
+        "Steve Yegge",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "AI Engineer: Building Closed-Loop Evals for a Multimodal Agent at Scale (Soumya Gupta & Jai Chopra, Uber)",
+      "url": "https://www.youtube.com/watch?v=31GUkCBD-Uc",
+      "alternate-url": "https://web.archive.org/web/20260807155947/https://www.youtube.com/watch?v=31GUkCBD-Uc",
+      "published": "2026-07-24",
+      "tags": [
+        "AI",
+        "Agents",
+        "Evals",
+        "Uber",
+        "Soumya Gupta",
+        "Jai Chopra",
+        "Video"
+      ]
+    },
+    {
+      "title": "ELC: How Box Builds AI Agents, Redefines Technical Vision, and Balances Speed with Security w/ Ben Kus #230",
+      "url": "https://sfelc.com/podcasts/how-box-builds-ai-agents-redefines-technical-vision-and-balances-speed-with-security-ben-kus-box",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/the-engineering-leadership-podcast/id1481996448?i=1000723614270",
+      "published": "2025-08-26",
+      "tags": [
+        "AI",
+        "Agents",
+        "Engineering",
+        "Box",
+        "Ben Kus",
+        "Podcast"
+      ]
+    },
+    {
+      "title": "No Priors: How Harvey AI is Changing the Legal Industry (Winston Weinberg)",
+      "url": "https://www.youtube.com/watch?v=0DDS8jWqEPg",
+      "alternate-url": "https://podcasts.apple.com/us/podcast/no-priors-artificial-intelligence-technology-startups/id1668002688?i=1000692211839",
+      "published": "2025-02-14",
+      "tags": [
+        "AI",
+        "LLM",
+        "Legal",
+        "Harvey",
+        "Winston Weinberg",
+        "Podcast"
       ]
     }
   ]

@@ -41,10 +41,10 @@ flowchart TD
   Validate --> Render["Render only existing link attributes"]
 ```
 
-Content loading: `Link.loadAll` fetches the five favorites JSON files from
+Content loading: `Link.loadAll` fetches the five favorites JSON-LD files from
 `raw.githubusercontent.com` (`main`) with the default HTTP cache mode, so GitHub's 5-minute
 CDN TTL (`cache-control: max-age=300`) bounds content staleness. The bundled
-`app/src/content/*.json` copies are only an offline fallback and are refreshed manually
+`app/src/content/*.jsonld` copies are only an offline fallback and are refreshed manually
 from the favorites repo.
 
 ## Type-Safety Gates
@@ -55,7 +55,7 @@ types complement rather than replace those runtime checks.
 
 ```mermaid
 flowchart LR
-  Content["Remote or bundled JSON"] --> Unknown["unknown input"]
+  Content["Remote or bundled JSON-LD"] --> Unknown["unknown input"]
   Api["Chat API response"] --> Unknown
   Unknown --> Narrow["Runtime record checks"]
   Narrow --> Models["Typed Link / Tag / Chat contracts"]
@@ -150,3 +150,51 @@ from that filtered set, preserving `INV-011` through `INV-013`.
 ## Global Footer
 
 `app/src/components/Footer.tsx` is a pure presentational component rendered once in `App.tsx` (inside the `ThemeProvider`, after the `RouterProvider`) so it appears on every route. It shows a "Built by John Pfeiffer" line with LinkedIn and GitHub source-link icons (`@mui/icons-material`); the GitHub link points at this repository. Covered by `Footer.test.tsx` (jsdom, `createRoot` + `act`).
+
+## JSON-LD migration (requirements v9)
+
+The content boundary reads the supplied compact schema.org `ItemList` profile.
+`models/jsonld.ts` maps `name` to `title`, `keywords` to tags, `datePublished`
+to published, `archivedAt` to alternate-url, and optional `@id` to id.
+Descriptions keep the existing title fallback and published-year suffix. Missing
+ids retain the existing generated-id behavior. The source files are never mutated.
+The legacy JSON files remain as migration comparison fixtures; runtime loading
+uses only JSON-LD. No schema type is added as an implicit tag.
+
+Remote loading keeps the same GitHub location and HTTP cache policy, with `.jsonld`
+extensions. A failed request or invalid ItemList triggers the complete bundled
+fallback. Bundled files use Vite raw imports and explicit JSON parsing; invalid
+bundled data fails visibly instead of silently returning an incomplete collection.
+This adapter supports the supplied profile, not arbitrary JSON-LD expansion,
+remote contexts, graph documents, or ListItem wrappers.
+
+```mermaid
+flowchart LR
+  Remote[GitHub JSON-LD] --> Adapter[ItemList validation and field mapping]
+  Remote -->|Request or content failure| Bundled[Bundled JSON-LD raw imports]
+  Bundled --> Adapter
+  Adapter --> Domain[Existing Link and Tag models]
+  Domain --> Links[Links view]
+  Domain --> Sources[Sources view]
+  Domain --> Chat[Chat recommendations]
+```
+
+```mermaid
+sequenceDiagram
+  participant User
+  participant Loader
+  participant Model
+  participant View
+  User->>Loader: Open tags or sources route
+  Loader->>Model: Adapt remote JSON-LD or bundled fallback
+  Model-->>View: Normalized links and tags
+  User->>View: Select tag filters
+  View-->>User: Matching links or domain groups with counts
+```
+
+Migration validation: 605 records (AI 54, Business 36, Engineering 180,
+History 50, People 285) compared exhaustively against the supplied legacy files.
+Tests cover original field parity, all single-tag selections and their source
+memberships/counts, alternate URL preservation, malformed content rejection,
+offline fallback, remote caching, and existing UI integration behavior.
+Reference: [schema.org ItemList](https://schema.org/ItemList).

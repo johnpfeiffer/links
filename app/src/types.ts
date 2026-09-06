@@ -13,6 +13,7 @@ export interface LinkRecord {
   tags: TagRecord[];
   createdAt: string;
   published: string | null;
+  "alternate-url": string;
 }
 
 export interface ParsedUrlPath {

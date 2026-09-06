@@ -1,10 +1,11 @@
 import { Tag } from "./tag";
-import type { JsonRecord, LinkRecord, TagRecord } from "../types";
+import type { LinkRecord, TagRecord } from "../types";
+import { linksFromJsonLd } from "./jsonld";
 import { isJsonRecord } from "../types";
 
 const REMOTE_BASE_URL =
   "https://raw.githubusercontent.com/johnpfeiffer/favorites/refs/heads/main/content";
-const REMOTE_FILES = ["ai.json", "business.json", "engineering.json", "history.json", "people.json"];
+const REMOTE_FILES = ["ai.jsonld", "business.jsonld", "engineering.jsonld", "history.jsonld", "people.jsonld"];
 
 interface LinkInit {
   id?: string;
@@ -14,25 +15,11 @@ interface LinkInit {
   tags: TagRecord[];
   createdAt?: string;
   published?: string | null;
+  "alternate-url"?: string;
 }
 
 type CreateId = () => string;
 let loadPromise: Promise<Link[]> | undefined;
-
-function pushLinksFromJson(rawLinks: unknown[], data: unknown, label: string): void {
-  if (Array.isArray(data)) {
-    rawLinks.push(...data);
-    return;
-  }
-  if (isJsonRecord(data)) {
-    Object.values(data).forEach((value) => {
-      if (Array.isArray(value)) rawLinks.push(...value);
-      else console.warn(`Invalid content section in ${label}`, value);
-    });
-    return;
-  }
-  console.warn(`Invalid content format in ${label}`, data);
-}
 
 async function fetchJson(url: string): Promise<unknown> {
   const res = await fetch(url, { cache: "default" });
@@ -44,7 +31,7 @@ async function loadAllRemote(): Promise<Link[]> {
   loadPromise ??= (async () => {
     const results = await Promise.all(REMOTE_FILES.map((file) => fetchJson(`${REMOTE_BASE_URL}/${file}`)));
     const rawLinks: unknown[] = [];
-    results.forEach((data, index) => pushLinksFromJson(rawLinks, data, REMOTE_FILES[index] ?? "remote content"));
+    results.forEach(data => rawLinks.push(...linksFromJsonLd(data)));
     return Link.normalizeAll(rawLinks);
   })();
   return loadPromise;
@@ -58,8 +45,10 @@ export class Link implements LinkRecord {
   tags: Tag[];
   createdAt: string;
   published: string | null;
+  "alternate-url": string;
 
-  constructor({ id, url, title, description, tags, createdAt, published }: LinkInit) {
+  constructor({ id, url, title, description, tags, createdAt, published, "alternate-url": alternateUrl }: LinkInit) {
+    this["alternate-url"] = alternateUrl ?? "";
     this.url = url;
     this.title = title;
     const resolvedDescription = typeof description === "string" && description.trim() ? description.trim() : title;
@@ -135,6 +124,7 @@ export class Link implements LinkRecord {
         tags,
         ...(createdAt ? { createdAt } : {}),
         published: Link.normalizePublished(raw.published, raw),
+        "alternate-url": typeof raw["alternate-url"] === "string" ? raw["alternate-url"].trim() : "",
       });
     } catch (error) {
       console.warn("Skipping invalid link; unable to construct Link instance.", raw, error);
@@ -163,24 +153,11 @@ export class Link implements LinkRecord {
     try {
       return await loadAllRemote();
     } catch (error) {
-      console.warn("Remote content failed; falling back to bundled JSON.", error);
+      console.warn("Remote content failed; falling back to bundled JSON-LD.", error);
     }
-    const contentModules = import.meta.glob<unknown>("/src/content/*.json");
-    const modules = await Promise.all(Object.entries(contentModules).map(async ([path, loader]) => {
-      try {
-        return { path, data: await loader() };
-      } catch (error) {
-        console.warn(`Failed to load ${path}.`, error);
-        return null;
-      }
-    }));
-    const rawLinks: unknown[] = [];
-    modules.forEach((entry) => {
-      if (!entry) return;
-      const module = entry.data;
-      const data = isJsonRecord(module) && "default" in module ? module.default : module;
-      pushLinksFromJson(rawLinks, data, entry.path);
-    });
+    const contentModules = import.meta.glob<string>("/src/content/*.jsonld", { query: "?raw", import: "default" });
+    const modules = await Promise.all(Object.values(contentModules).map(loader => loader()));
+    const rawLinks = modules.flatMap(text => linksFromJsonLd(JSON.parse(text)));
     return Link.normalizeAll(rawLinks);
   }
 }

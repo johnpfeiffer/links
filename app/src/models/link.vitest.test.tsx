@@ -1,13 +1,15 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi, afterEach } from "vitest";
 import { Link } from "./link.js";
 import { Tag } from "./tag.js";
 
 describe("Link.loadAll", () => {
-  it("loads content data via import.meta.glob", async () => {
+  afterEach(() => { vi.unstubAllGlobals(); vi.resetModules(); });
+  it("loads bundled JSON-LD when offline", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("offline")));
     const links = await Link.loadAll();
 
     expect(Array.isArray(links)).toBe(true);
-    expect(links.length).toBeGreaterThan(0);
+    expect(links.length).toBe(605);
     expect(
       links.every(
         (link) =>
