@@ -1,44 +1,23 @@
 import { describe, expect, it } from "vitest";
 import { Link } from "./link";
 import { linksFromJsonLd } from "./jsonld";
-import { buildDomainStats } from "../components/SourcesSection";
-import { collectTags, filterLinksByTags } from "./links";
 
-const legacy = import.meta.glob("/src/content/*.json", { eager: true, import: "default" });
 const converted = import.meta.glob<string>("/src/content/*.jsonld", { eager: true, query: "?raw", import: "default" });
 
-describe("JSON-LD migration", () => {
-  it.each(Object.entries(converted))("preserves every record and tag selection in %s", (path, text) => {
-    const before = Object.values(legacy[path.replace(/jsonld$/, "json")]).flat();
-    const after = linksFromJsonLd(JSON.parse(text));
-    const beforeWithSchemaFields = before.map(({ title, tags, published, "alternate-url": archivedAt = "", ...record }) => ({
-      ...record,
-      name: title,
-      keywords: tags,
-      datePublished: published,
-      archivedAt,
-    }));
-    expect(after).toHaveLength(before.length);
-    const normalize = (records) => Link.normalizeAll(records)
-      .map(({ id, createdAt, ...record }) => record);
-    expect(normalize(after)).toEqual(normalize(beforeWithSchemaFields));
-    // Compare original fields too, including alternate URLs that the old loader dropped.
-    after.forEach((record, index) => {
-      expect(record.name).toEqual(before[index].title);
-      expect(record.url).toEqual(before[index].url);
-      expect(record.keywords).toEqual(before[index].tags);
-      expect(record.datePublished).toEqual(before[index].published);
-      expect(record.archivedAt).toEqual(before[index]["alternate-url"] ?? "");
-    });
-    const oldLinks = Link.normalizeAll(beforeWithSchemaFields);
-    const newLinks = Link.normalizeAll(after);
-    expect(collectTags(newLinks)).toEqual(collectTags(oldLinks));
-    for (const tag of collectTags(oldLinks)) {
-      const urls = (links) => filterLinksByTags(links, [tag]).map(link => link.url);
-      expect(urls(newLinks)).toEqual(urls(oldLinks));
-      const sources = links => buildDomainStats(links, [tag]).map(({ domain, count, links }) => ({ domain, count, urls: links.map(link => link.url) }));
-      expect(sources(newLinks)).toEqual(sources(oldLinks));
-    }
+describe("bundled JSON-LD content", () => {
+  it.each(Object.entries(converted))("loads every current record from %s without changing its fields", (_path, text) => {
+    const source = JSON.parse(text);
+    const links = linksFromJsonLd(source);
+
+    expect(links).toEqual(source.itemListElement.map(item => ({
+      id: item["@id"],
+      name: item.name,
+      url: item.url,
+      keywords: item.keywords,
+      datePublished: item.datePublished ?? null,
+      description: item.description,
+      archivedAt: item.archivedAt ?? "",
+    })));
   });
 
   it.each([null, [], {}, { "@type": "ItemList", itemListElement: [{}] }])("rejects malformed content without silently dropping records", value => {

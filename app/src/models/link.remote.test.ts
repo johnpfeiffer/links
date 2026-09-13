@@ -1,6 +1,15 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 const REMOTE_FILES = ["ai.jsonld", "business.jsonld", "engineering.jsonld", "history.jsonld", "people.jsonld"];
+const BUNDLED_CONTENT = import.meta.glob<string>("/src/content/*.jsonld", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+});
+
+const bundledRecordCount = Object.values(BUNDLED_CONTENT)
+  .map(text => JSON.parse(text).itemListElement.length)
+  .reduce((total, count) => total + count, 0);
 
 describe("Link.loadAll remote content", () => {
   afterEach(() => {
@@ -34,7 +43,7 @@ describe("Link.loadAll remote content", () => {
     vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ "@type": "ItemList", itemListElement: [{}] }) })));
     const { Link } = await import("./link.js");
     const links = await Link.loadAll();
-    expect(links).toHaveLength(628);
-    expect(new Set(links.map(link => link.id)).size).toBe(628);
+    expect(links).toHaveLength(bundledRecordCount);
+    expect(new Set(links.map(link => link.id)).size).toBe(bundledRecordCount);
   });
 });

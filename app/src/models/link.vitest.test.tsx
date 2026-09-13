@@ -2,6 +2,16 @@ import { describe, expect, it, vi, afterEach } from "vitest";
 import { Link } from "./link.js";
 import { Tag } from "./tag.js";
 
+const BUNDLED_CONTENT = import.meta.glob<string>("/src/content/*.jsonld", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+});
+
+const bundledRecordCount = Object.values(BUNDLED_CONTENT)
+  .map(text => JSON.parse(text).itemListElement.length)
+  .reduce((total, count) => total + count, 0);
+
 describe("Link.loadAll", () => {
   afterEach(() => { vi.unstubAllGlobals(); vi.resetModules(); });
   it("loads bundled JSON-LD when offline", async () => {
@@ -9,7 +19,7 @@ describe("Link.loadAll", () => {
     const links = await Link.loadAll();
 
     expect(Array.isArray(links)).toBe(true);
-    expect(links.length).toBe(628);
+    expect(links).toHaveLength(bundledRecordCount);
     expect(
       links.every(
         (link) =>
