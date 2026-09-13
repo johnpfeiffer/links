@@ -9,7 +9,7 @@ describe("Link.loadAll", () => {
     const links = await Link.loadAll();
 
     expect(Array.isArray(links)).toBe(true);
-    expect(links.length).toBe(605);
+    expect(links.length).toBe(628);
     expect(
       links.every(
         (link) =>

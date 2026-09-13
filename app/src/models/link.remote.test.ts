@@ -34,7 +34,7 @@ describe("Link.loadAll remote content", () => {
     vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ "@type": "ItemList", itemListElement: [{}] }) })));
     const { Link } = await import("./link.js");
     const links = await Link.loadAll();
-    expect(links).toHaveLength(605);
-    expect(new Set(links.map(link => link.id)).size).toBe(605);
+    expect(links).toHaveLength(628);
+    expect(new Set(links.map(link => link.id)).size).toBe(628);
   });
 });
