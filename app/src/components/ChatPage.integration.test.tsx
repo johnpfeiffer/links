@@ -20,19 +20,19 @@ const futureConfig = {
 const links = [
   {
     id: "ai-1",
-    title: "AI Systems",
+    name: "AI Systems",
     description: "A practical AI systems essay",
     url: "https://example.com/ai",
-    published: "2024-01-01",
-    tags: [Tag.fromLabel("AI")],
+    datePublished: "2024-01-01",
+    keywords: [Tag.fromLabel("AI")],
   },
   {
     id: "eng-1",
-    title: "Engineering Leadership",
+    name: "Engineering Leadership",
     description: "A software leadership talk",
     url: "https://example.com/eng",
-    published: null,
-    tags: [Tag.fromLabel("Engineering")],
+    datePublished: null,
+    keywords: [Tag.fromLabel("Engineering")],
   },
 ];
 

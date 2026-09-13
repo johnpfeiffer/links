@@ -13,7 +13,7 @@ and `CssBaseline`; pages use `sx` for layout and the chat input uses
 needed to complete the 9.2-to-9.4 dependency update.
 
 Validation on 2026-09-06: `rtk npm run check` passed strict typechecking,
-all 73 tests across 16 files, and the Vite production build. Browser smoke
+all 84 tests across 17 files, and the Vite production build. Browser smoke
 checks verified content loading, tag filtering, expansion of both tag and
 source accordions, and chat input enabling the Send button. Existing integration tests cover chat submission and the
 three-answer limit using mocked API responses.
@@ -154,9 +154,10 @@ from that filtered set, preserving `INV-011` through `INV-013`.
 ## JSON-LD migration (requirements v9)
 
 The content boundary reads the supplied compact schema.org `ItemList` profile.
-`models/jsonld.ts` maps `name` to `title`, `keywords` to tags, `datePublished`
-to published, `archivedAt` to alternate-url, and optional `@id` to id.
-Descriptions keep the existing title fallback and published-year suffix. Missing
+`models/jsonld.ts` validates the schema.org fields `name`, `keywords`,
+`datePublished`, and `archivedAt`, while optional `@id` supplies the internal id.
+The same field names continue through the Link model and views without aliases.
+Descriptions keep the existing name fallback and publication-year suffix. Missing
 ids retain the existing generated-id behavior. The source files are never mutated.
 The legacy JSON files remain as migration comparison fixtures; runtime loading
 uses only JSON-LD. No schema type is added as an implicit tag.
@@ -173,7 +174,7 @@ flowchart LR
   Remote[GitHub JSON-LD] --> Adapter[ItemList validation and field mapping]
   Remote -->|Request or content failure| Bundled[Bundled JSON-LD raw imports]
   Bundled --> Adapter
-  Adapter --> Domain[Existing Link and Tag models]
+  Adapter --> Domain[Link model with schema.org field names]
   Domain --> Links[Links view]
   Domain --> Sources[Sources view]
   Domain --> Chat[Chat recommendations]

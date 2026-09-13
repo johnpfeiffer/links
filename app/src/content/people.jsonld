@@ -3711,7 +3711,7 @@
     },
     {
       "@type": "PodcastEpisode",
-      "name": "Peterman Pod: Amazon Principal Engineer on Layoffs, Interviewing & Career Growth (Steve Huynh)",
+      "name": "Peterman Pod: Amazon Principal Engineer on Layoffs, Interviewing and Career Growth (Steve Huynh)",
       "url": "https://www.developing.dev/p/amazon-principal-engineer-on-layoffs",
       "archivedAt": "https://podcasts.apple.com/us/podcast/the-developing-dev/id1777363835?i=1000697048680",
       "datePublished": "2025-03-02",
@@ -3773,6 +3773,161 @@
         "People",
         "Management",
         "Leadership",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Radical Candor: What Founders Need to Know About Feedback and Culture (S7E33)",
+      "url": "https://www.radicalcandor.com/podcast/founders-feedback-culture-7-33",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/radical-candor-communication-at-work/id1188489488?i=1000721771963",
+      "datePublished": "2025-08-13",
+      "keywords": [
+        "People",
+        "Radical Candor",
+        "Feedback",
+        "Culture",
+        "Startups",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "The CTO Playbook 40: Mastering the Art of Influence: How to Get Executive Buy-In for Your Big Ideas",
+      "url": "https://the-cto-playbook.cohostpodcasting.com/episodes/40-mastering-the-art-of-influence-how-to-get-executive-buy-in-for-your-big-ideas",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/the-cto-playbook/id1756793398?i=1000704371620",
+      "datePublished": "2025-04-21",
+      "keywords": [
+        "People",
+        "CTO Playbook",
+        "Influence",
+        "Managing Up",
+        "Leadership",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "The CTO Playbook 64: What Got You Here Won't Get You There — CTO Leadership with Catherine Stagg-Macey",
+      "url": "https://the-cto-playbook.cohostpodcasting.com/episodes/64-what-got-you-here-won-t-get-you-there-cto-leadership-with-catherine-stagg-macey",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/the-cto-playbook/id1756793398?i=1000730491502",
+      "datePublished": "2025-10-06",
+      "keywords": [
+        "People",
+        "CTO Playbook",
+        "CTO",
+        "Coaching",
+        "Catherine Stagg-Macey",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Manager Tools: Career Insurance For Your Directs - Part 1",
+      "url": "https://www.manager-tools.com/2025/09/career-insurance-your-directs-part-1",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/manager-tools/id74198801?i=1000726927216",
+      "datePublished": "2025-09-15",
+      "keywords": [
+        "People",
+        "Manager Tools",
+        "Career Development",
+        "Layoffs",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Lenny's Podcast: From managing people to managing AI: How the same leadership skills apply in the age of AI (Julie Zhuo)",
+      "url": "https://www.lennysnewsletter.com/p/from-managing-people-to-managing-ai-julie-zhuo",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/lennys-podcast-product-growth-career/id1627920305?i=1000727721509",
+      "datePublished": "2025-09-21",
+      "keywords": [
+        "People",
+        "Management",
+        "Leadership",
+        "AI",
+        "Julie Zhuo",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Effective Engineering Manager: Micromanagement: The Silent Threat to Engineering Teams",
+      "url": "https://www.effectiveem.com/micromanagement/",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/effective-engineering-manager/id1535585856?i=1000725041331",
+      "datePublished": "2025-09-04",
+      "keywords": [
+        "People",
+        "Engineering Management",
+        "Micromanagement",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Radical Candor: Are Flat Organizations More Efficient? Kim and Jason Weigh In (S7E37)",
+      "url": "https://www.radicalcandor.com/podcast/flat-organizations-7-37",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/radical-candor-communication-at-work/id1188489488?i=1000727156444",
+      "datePublished": "2025-09-17",
+      "keywords": [
+        "People",
+        "Radical Candor",
+        "Organization",
+        "Management",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Manager Tools: Google's Project Oxygen",
+      "url": "https://www.manager-tools.com/2025/09/googles-project-oxygen",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/manager-tools/id74198801?i=1000725561570",
+      "datePublished": "2025-09-08",
+      "keywords": [
+        "People",
+        "Manager Tools",
+        "Management",
+        "Google",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Developing Leadership: The Episode You Should Send to Your CEO",
+      "url": "https://podcast.developingleadership.co/e/episode-10-the-episode-you-should-send-to-your-ceo/",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/developing-leadership/id1575893623?i=1000542095262",
+      "datePublished": "2021-11-16",
+      "keywords": [
+        "People",
+        "Engineering Leadership",
+        "CTO",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Manager Tools: The Black Widow Mistake - Part 1 (Hall of Fame Guidance)",
+      "url": "https://www.manager-tools.com/2025/08/black-widow-mistake-part-1",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/manager-tools/id74198801?i=1000723493381",
+      "datePublished": "2025-08-25",
+      "keywords": [
+        "People",
+        "Manager Tools",
+        "Career Development",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Lenny's Podcast: The one question that saves product careers (Matt LeMay)",
+      "url": "https://www.lennysnewsletter.com/p/the-one-question-that-saves-product-careers-matt-lemay",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/lennys-podcast-product-growth-career/id1627920305?i=1000721941361",
+      "datePublished": "2025-08-14",
+      "keywords": [
+        "People",
+        "Product Management",
+        "Layoffs",
+        "Matt LeMay",
         "Podcast"
       ]
     }

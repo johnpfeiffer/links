@@ -10,12 +10,12 @@ const REMOTE_FILES = ["ai.jsonld", "business.jsonld", "engineering.jsonld", "his
 interface LinkInit {
   id?: string;
   url: string;
-  title: string;
+  name: string;
   description?: string;
-  tags: TagRecord[];
+  keywords: TagRecord[];
   createdAt?: string;
-  published?: string | null;
-  "alternate-url"?: string;
+  datePublished?: string | null;
+  archivedAt?: string;
 }
 
 type CreateId = () => string;
@@ -40,21 +40,21 @@ async function loadAllRemote(): Promise<Link[]> {
 export class Link implements LinkRecord {
   id: string;
   url: string;
-  title: string;
+  name: string;
   description: string;
-  tags: Tag[];
+  keywords: Tag[];
   createdAt: string;
-  published: string | null;
-  "alternate-url": string;
+  datePublished: string | null;
+  archivedAt: string;
 
-  constructor({ id, url, title, description, tags, createdAt, published, "alternate-url": alternateUrl }: LinkInit) {
-    this["alternate-url"] = alternateUrl ?? "";
+  constructor({ id, url, name, description, keywords, createdAt, datePublished, archivedAt }: LinkInit) {
+    this.archivedAt = archivedAt ?? "";
     this.url = url;
-    this.title = title;
-    const resolvedDescription = typeof description === "string" && description.trim() ? description.trim() : title;
-    this.published = published ?? null;
-    this.description = Link.appendPublishedYear(resolvedDescription, this.published);
-    this.tags = tags;
+    this.name = name;
+    const resolvedDescription = typeof description === "string" && description.trim() ? description.trim() : name;
+    this.datePublished = datePublished ?? null;
+    this.description = Link.appendDatePublishedYear(resolvedDescription, this.datePublished);
+    this.keywords = keywords;
     this.id = id ?? Link.createId();
     this.createdAt = createdAt ?? new Date().toISOString();
   }
@@ -63,33 +63,33 @@ export class Link implements LinkRecord {
     return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
   }
 
-  static normalizePublished(rawPublished: unknown, link: unknown): string | null {
-    if (rawPublished === null || rawPublished === undefined) return null;
-    if (typeof rawPublished === "string") return rawPublished.trim() || null;
-    console.warn("Invalid published value; expected ISO string or null.", { published: rawPublished, link });
+  static normalizeDatePublished(rawDatePublished: unknown, link: unknown): string | null {
+    if (rawDatePublished === null || rawDatePublished === undefined) return null;
+    if (typeof rawDatePublished === "string") return rawDatePublished.trim() || null;
+    console.warn("Invalid datePublished value; expected ISO string or null.", { datePublished: rawDatePublished, link });
     return null;
   }
 
-  static extractPublishedYear(published: string | null | undefined): string | null {
-    if (typeof published !== "string") return null;
-    const parsed = new Date(published);
+  static extractDatePublishedYear(datePublished: string | null | undefined): string | null {
+    if (typeof datePublished !== "string") return null;
+    const parsed = new Date(datePublished);
     if (!Number.isNaN(parsed.valueOf())) return String(parsed.getUTCFullYear());
-    return published.match(/^(\d{4})/)?.[1] ?? null;
+    return datePublished.match(/^(\d{4})/)?.[1] ?? null;
   }
 
-  static appendPublishedYear(description: string, published: string | null | undefined): string {
+  static appendDatePublishedYear(description: string, datePublished: string | null | undefined): string {
     const trimmed = description.trim();
     if (!trimmed) return trimmed;
-    const year = Link.extractPublishedYear(published);
+    const year = Link.extractDatePublishedYear(datePublished);
     if (!year) return trimmed;
     const suffix = `(${year})`;
     return trimmed.endsWith(suffix) ? trimmed : `${trimmed} ${suffix}`;
   }
 
-  static normalizeTags(rawTags: unknown, link: unknown): Tag[] | null {
-    if (!Array.isArray(rawTags)) return null;
+  static normalizeKeywords(rawKeywords: unknown, link: unknown): Tag[] | null {
+    if (!Array.isArray(rawKeywords)) return null;
     const uniqueTags = new Map<string, Tag>();
-    rawTags.forEach((tagValue) => {
+    rawKeywords.forEach((tagValue) => {
       const tag = tagValue instanceof Tag ? tagValue : Tag.fromLabel(tagValue);
       if (!tag) {
         console.warn("Invalid tag skipped.", { tag: tagValue, link });
@@ -106,11 +106,11 @@ export class Link implements LinkRecord {
       return null;
     }
     const url = typeof raw.url === "string" ? raw.url.trim() : "";
-    const title = typeof raw.title === "string" ? raw.title.trim() : "";
+    const name = typeof raw.name === "string" ? raw.name.trim() : "";
     const description = typeof raw.description === "string" ? raw.description.trim() : "";
-    const tags = Link.normalizeTags(raw.tags, raw);
-    if (!url || !title || !tags || tags.length === 0) {
-      console.warn("Skipping invalid link; missing url, title, or tags.", raw);
+    const keywords = Link.normalizeKeywords(raw.keywords, raw);
+    if (!url || !name || !keywords || keywords.length === 0) {
+      console.warn("Skipping invalid link; missing url, name, or keywords.", raw);
       return null;
     }
     const rawId = typeof raw.id === "string" || typeof raw.id === "number" ? String(raw.id).trim() : "";
@@ -119,12 +119,12 @@ export class Link implements LinkRecord {
       return new Link({
         id: rawId || createId(),
         url,
-        title,
+        name,
         description,
-        tags,
+        keywords,
         ...(createdAt ? { createdAt } : {}),
-        published: Link.normalizePublished(raw.published, raw),
-        "alternate-url": typeof raw["alternate-url"] === "string" ? raw["alternate-url"].trim() : "",
+        datePublished: Link.normalizeDatePublished(raw.datePublished, raw),
+        archivedAt: typeof raw.archivedAt === "string" ? raw.archivedAt.trim() : "",
       });
     } catch (error) {
       console.warn("Skipping invalid link; unable to construct Link instance.", raw, error);

@@ -20,27 +20,27 @@ const futureConfig = {
 const sourceLinks = [
   {
     id: "1",
-    title: "Both",
+    name: "Both",
     description: "Both",
     url: "https://example.com/both",
-    published: "2022-06-01",
-    tags: [Tag.fromLabel("AI"), Tag.fromLabel("Podcast")],
+    datePublished: "2022-06-01",
+    keywords: [Tag.fromLabel("AI"), Tag.fromLabel("Podcast")],
   },
   {
     id: "2",
-    title: "AI only",
+    name: "AI only",
     description: "AI only",
     url: "https://ai.example.com/one",
-    published: "2021-01-15",
-    tags: [Tag.fromLabel("AI")],
+    datePublished: "2021-01-15",
+    keywords: [Tag.fromLabel("AI")],
   },
   {
     id: "3",
-    title: "Podcast only",
+    name: "Podcast only",
     description: "Podcast only",
     url: "https://podcast.example.com/one",
-    published: null,
-    tags: [Tag.fromLabel("Podcast")],
+    datePublished: null,
+    keywords: [Tag.fromLabel("Podcast")],
   },
 ];
 

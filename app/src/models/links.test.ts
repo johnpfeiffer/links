@@ -14,17 +14,17 @@ describe("Link.normalizeAll", () => {
     };
     const rawLinks = [
       {
-        title: "  Good ",
+        name: "  Good ",
         url: " https://example.com ",
-        tags: [" TagOne ", "tagTwo"],
+        keywords: [" TagOne ", "tagTwo"],
       },
       {
-        title: "",
+        name: "",
         url: "https://bad.example.com",
-        tags: ["Bad"],
+        keywords: ["Bad"],
       },
       {
-        title: "Missing tags",
+        name: "Missing tags",
         url: "https://missing.example.com",
       },
     ];
@@ -33,10 +33,10 @@ describe("Link.normalizeAll", () => {
 
     assert.equal(normalized.length, 1);
     assert.equal(normalized[0].id, "id-1");
-    assert.equal(normalized[0].title, "Good");
+    assert.equal(normalized[0].name, "Good");
     assert.equal(normalized[0].url, "https://example.com");
     assert.deepEqual(
-      normalized[0].tags.map((tag) => tag.label),
+      normalized[0].keywords.map((tag) => tag.label),
       ["TagOne", "tagTwo"]
     );
   });
@@ -45,15 +45,15 @@ describe("Link.normalizeAll", () => {
     const rawLinks = [
       {
         id: "same",
-        title: "Link One",
+        name: "Link One",
         url: "https://one.example.com",
-        tags: ["One"],
+        keywords: ["One"],
       },
       {
         id: "same",
-        title: "Link Two",
+        name: "Link Two",
         url: "https://two.example.com",
-        tags: ["Two"],
+        keywords: ["Two"],
       },
     ];
 
@@ -72,15 +72,15 @@ describe("filterLinksByTags", () => {
     const links = [
       {
         id: "1",
-        title: "One",
+        name: "One",
         url: "https://one",
-        tags: [Tag.fromLabel("AI"), Tag.fromLabel("Podcast")],
+        keywords: [Tag.fromLabel("AI"), Tag.fromLabel("Podcast")],
       },
       {
         id: "2",
-        title: "Two",
+        name: "Two",
         url: "https://two",
-        tags: [Tag.fromLabel("AI")],
+        keywords: [Tag.fromLabel("AI")],
       },
     ];
 
@@ -96,15 +96,15 @@ describe("filterLinksByTags", () => {
     const links = [
       {
         id: "1",
-        title: "One",
+        name: "One",
         url: "https://one",
-        tags: [Tag.fromLabel("AI")],
+        keywords: [Tag.fromLabel("AI")],
       },
       {
         id: "2",
-        title: "Two",
+        name: "Two",
         url: "https://two",
-        tags: [Tag.fromLabel("News")],
+        keywords: [Tag.fromLabel("News")],
       },
     ];
 
@@ -120,15 +120,15 @@ describe("collectTags", () => {
     const links = [
       {
         id: "1",
-        title: "One",
+        name: "One",
         url: "https://one",
-        tags: [Tag.fromLabel("AI"), Tag.fromLabel("Podcast")],
+        keywords: [Tag.fromLabel("AI"), Tag.fromLabel("Podcast")],
       },
       {
         id: "2",
-        title: "Two",
+        name: "Two",
         url: "https://two",
-        tags: [Tag.fromLabel("ai"), Tag.fromLabel("News")],
+        keywords: [Tag.fromLabel("ai"), Tag.fromLabel("News")],
       },
     ];
 

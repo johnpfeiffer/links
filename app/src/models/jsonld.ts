@@ -17,12 +17,12 @@ export function linksFromJsonLd(data: unknown): JsonRecord[] {
     }
     return {
       id: item["@id"],
-      title: item.name,
+      name: item.name,
       url: item.url,
-      tags: [...item.keywords],
-      published: item.datePublished ?? null,
+      keywords: [...item.keywords],
+      datePublished: item.datePublished ?? null,
       description: item.description,
-      "alternate-url": item.archivedAt ?? "",
+      archivedAt: item.archivedAt ?? "",
     };
   });
 }

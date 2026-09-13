@@ -30,34 +30,34 @@ function buildLinks(overrides = []) {
   return [
     {
       id: "1",
-      title: "Newest",
+      name: "Newest",
       url: "https://example.com/newest",
-      published: "2022-06-01",
+      datePublished: "2022-06-01",
     },
     {
       id: "2",
-      title: "Oldest",
+      name: "Oldest",
       url: "https://example.com/oldest",
-      published: "2021-01-15",
+      datePublished: "2021-01-15",
     },
     {
       id: "3",
-      title: "Unknown",
+      name: "Unknown",
       url: "https://example.com/unknown",
-      published: null,
+      datePublished: null,
     },
     ...overrides,
   ];
 }
 
 describe("buildDomainStats", () => {
-  it("sorts links by published date ascending with nulls last", () => {
+  it("sorts links by datePublished date ascending with nulls last", () => {
     const links = buildLinks([
       {
         id: "4",
-        title: "Other domain",
+        name: "Other domain",
         url: "https://other.com/one",
-        published: "2020-05-01",
+        datePublished: "2020-05-01",
       },
     ]);
 
@@ -72,24 +72,24 @@ describe("buildDomainStats", () => {
     const links = [
       {
         id: "1",
-        title: "Both",
+        name: "Both",
         url: "https://example.com/both",
-        published: "2022-06-01",
-        tags: [Tag.fromLabel("AI"), Tag.fromLabel("Podcast")],
+        datePublished: "2022-06-01",
+        keywords: [Tag.fromLabel("AI"), Tag.fromLabel("Podcast")],
       },
       {
         id: "2",
-        title: "AI only",
+        name: "AI only",
         url: "https://ai.example.com/one",
-        published: "2021-01-15",
-        tags: [Tag.fromLabel("AI")],
+        datePublished: "2021-01-15",
+        keywords: [Tag.fromLabel("AI")],
       },
       {
         id: "3",
-        title: "Podcast only",
+        name: "Podcast only",
         url: "https://podcast.example.com/one",
-        published: null,
-        tags: [Tag.fromLabel("Podcast")],
+        datePublished: null,
+        keywords: [Tag.fromLabel("Podcast")],
       },
     ];
 
@@ -105,7 +105,7 @@ describe("buildDomainStats", () => {
 });
 
 describe("SourcesSection", () => {
-  it("renders links in published order when expanded", async () => {
+  it("renders links in datePublished order when expanded", async () => {
     const links = buildLinks();
 
     const { container, cleanup } = await renderSources(links);

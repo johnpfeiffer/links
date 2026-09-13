@@ -23,21 +23,21 @@ const futureConfig = {
 };
 
 const linkA = Link.from({
-  tags: ["AI", "Podcast"],
+  keywords: ["AI", "Podcast"],
   url: "https://a.example.com",
-  title: "AI Podcast Link",
+  name: "AI Podcast Link",
 });
 
 const linkB = Link.from({
-  tags: ["AI"],
+  keywords: ["AI"],
   url: "https://b.example.com",
-  title: "AI Only Link",
+  name: "AI Only Link",
 });
 
 const linkC = Link.from({
-  tags: ["History"],
+  keywords: ["History"],
   url: "https://c.example.com",
-  title: "History Link",
+  name: "History Link",
 });
 
 const testLinks = [linkA, linkB, linkC];

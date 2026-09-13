@@ -10,7 +10,7 @@ export function filterLinksByTags(
   if (normalizedTags.length === 0) return [...links];
 
   return links.filter((link) => {
-    const tagSet = new Set(link.tags.map((tag) => tag.key));
+    const tagSet = new Set(link.keywords.map((tag) => tag.key));
     return normalizedTags.every((tagKey) => tagSet.has(tagKey));
   });
 }
@@ -18,7 +18,7 @@ export function filterLinksByTags(
 export function collectTags(links: readonly LinkRecord[]): TagRecord[] {
   const tagMap = new Map<string, TagRecord>();
   links.forEach((link) => {
-    link.tags.forEach((tag) => {
+    link.keywords.forEach((tag) => {
       const key = tag?.key;
       if (!key) return;
       if (!tagMap.has(key)) {

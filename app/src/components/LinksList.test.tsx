@@ -72,16 +72,16 @@ describe("LinksList", () => {
       {
         id: "1",
         url: "https://example.com/one",
-        title: "Title One",
+        name: "Title One",
         description: "Description One",
-        tags: [Tag.fromLabel("AI")],
+        keywords: [Tag.fromLabel("AI")],
       },
       {
         id: "2",
         url: "https://example.com/two",
-        title: "Title Two",
+        name: "Title Two",
         description: "Description Two",
-        tags: [Tag.fromLabel("History")],
+        keywords: [Tag.fromLabel("History")],
       },
     ];
 
@@ -110,9 +110,9 @@ describe("LinksList", () => {
       {
         id: "1",
         url: "https://example.com/one",
-        title: "Title One",
+        name: "Title One",
         description: "Description One",
-        tags: [Tag.fromLabel("AI"), Tag.fromLabel("History")],
+        keywords: [Tag.fromLabel("AI"), Tag.fromLabel("History")],
       },
     ];
 
@@ -136,9 +136,9 @@ describe("LinksList", () => {
       {
         id: "1",
         url: "https://example.com/one",
-        title: "Title One",
+        name: "Title One",
         description: "Description One",
-        tags: [Tag.fromLabel("AI"), Tag.fromLabel("History")],
+        keywords: [Tag.fromLabel("AI"), Tag.fromLabel("History")],
       },
     ];
 

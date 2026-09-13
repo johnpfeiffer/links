@@ -19,36 +19,37 @@ An index of great learning resources - applicable for career development in soft
 - `src/components/`: UI modules (e.g., `HomePage.tsx`, `SourcesPage.tsx`, `LinksSection.tsx`).
 - `src/lib/`: app helpers (`parseUrlPath`).
 - `src/models/`: data models and collection helpers (`tag.js`, `tags.js`, `link.js`, `links.js`).
-- `src/content/`: JSON data sources loaded at runtime.
+- `src/content/`: JSON-LD data sources loaded at runtime.
 - Chat recommendations: Links View route `/_chat` or `/:app/_chat`; backend API route `POST /links/chat`.
 
 ## Content Schema
 
-This application depends on the remote resource of "favorites" on github, but as a fallback has locally cached content
+This application loads the `favorites` JSON-LD files from GitHub and falls back to the bundled copies when remote loading fails.
 
-Each link entry in `src/content/*.json` uses this shape:
+Each `src/content/*.jsonld` file is a schema.org `ItemList`. Its entries use schema.org field names throughout loading, the internal model, and rendering:
 
 ```json
 {
-      "title": "Lex Fridman: Gustav Soderstrom on AI in Spotify Music",
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "AI",
+  "itemListElement": [
+    {
+      "@type": "PodcastEpisode",
+      "name": "Lex Fridman: Gustav Soderstrom on AI in Spotify Music",
       "url": "https://lexfridman.com/gustav-soderstrom/",
-      "published": "2019-07-29",
-      "tags": [
+      "datePublished": "2019-07-29",
+      "keywords": [
         "AI",
         "Machine Learning",
         "Podcast"
       ]
-    },
-
-
-{
-  "title": "Example title",
-  "url": "https://example.com",
-  "alternate-url": "https://web.archive.org/example.com",
-  "published": "2024-06-28",
-  "tags": ["Example", "Tag2"]
+    }
+  ]
 }
 ```
+
+An entry may also provide `@id`, `description`, and `archivedAt`. The internal `Link` model uses `id`, `url`, `name`, `description`, `keywords`, `datePublished`, and `archivedAt`; `createdAt` remains ingest metadata.
 
 ## Development
 
@@ -78,7 +79,7 @@ flowchart TD
   A[index.jsx<br/>createRoot] --> B[App.jsx<br/>ThemeProvider and RouterProvider]
   B --> C[createBrowserRouter<br/>root loader + nested routes]
   C --> D[linksRootLoader<br/>defer Link.loadAll]
-  D --> E[Link.loadAll<br/>import.meta.glob JSON]
+  D --> E[Link.loadAll<br/>remote or bundled JSON-LD]
   E --> F[Normalize links<br/>Tag.fromLabel]
   C --> G[HomePage.jsx or SourcesPage.jsx]
   G --> H[useRouteLoaderData]

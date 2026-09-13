@@ -41,12 +41,12 @@ export default function LinksList({ app, enabledTags, links }: {
                 rel="noreferrer"
                 underline="hover"
               >
-                {link.description ?? link.title}
+                {link.description ?? link.name}
               </MuiLink>
             }
           />
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, pb: 1 }}>
-            {link.tags.map((tag) => {
+            {link.keywords.map((tag) => {
               const enabled = isTagEnabled(activeTags, tag);
               const to = buildTagTogglePath(app, activeTags, tag);
 

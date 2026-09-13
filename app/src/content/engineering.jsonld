@@ -1188,6 +1188,7 @@
       "@type": "PodcastEpisode",
       "name": "Why You're Wrong About REST from Fallthrough",
       "url": "https://fallthrough.transistor.fm/28",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/fallthrough/id1783181295?i=1000717085601",
       "datePublished": "2025-07-14",
       "keywords": [
         "Engineering",
@@ -1200,6 +1201,7 @@
       "@type": "PodcastEpisode",
       "name": "How HTTP works with Julia Evans",
       "url": "https://www.softwaresessions.com/episodes/how-http-works-with-julia-evans/",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/software-sessions/id1479514262?i=1000449951332",
       "datePublished": "2019-09-16",
       "keywords": [
         "Engineering",
@@ -2231,6 +2233,31 @@
         "LinearB",
         "Rob Zuber",
         "Tara Hernandez",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "name": "The four types of work by Kai Evans",
+      "url": "https://post-technical.com/the-four-types-of-work-bf928e5e825b",
+      "archivedAt": "https://web.archive.org/web/20230702215646/https://post-technical.com/the-four-types-of-work-bf928e5e825b",
+      "datePublished": "2023-06-18",
+      "keywords": [
+        "Engineering",
+        "Engineering Management",
+        "Prioritization",
+        "Blog"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Developing Leadership: A Changing Engineering Landscape (history of tech stacks: DVCS and SaaS)",
+      "url": "https://podcast.developingleadership.co/e/episode-1-a-changing-engineering-landscape/",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/developing-leadership/id1575893623?i=1000528348208",
+      "datePublished": "2021-07-06",
+      "keywords": [
+        "Engineering",
+        "History",
         "Podcast"
       ]
     }

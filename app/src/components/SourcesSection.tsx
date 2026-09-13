@@ -13,24 +13,24 @@ import {
 import { filterLinksByTags } from "../models/links";
 import type { LinkRecord, SourceStat, TagRecord } from "../types";
 
-function compareLinksByPublished(left: LinkRecord, right: LinkRecord): number {
-  const leftPublished = left?.published ?? null;
-  const rightPublished = right?.published ?? null;
+function compareLinksByDatePublished(left: LinkRecord, right: LinkRecord): number {
+  const leftDatePublished = left?.datePublished ?? null;
+  const rightDatePublished = right?.datePublished ?? null;
 
-  if (leftPublished === null && rightPublished === null) {
+  if (leftDatePublished === null && rightDatePublished === null) {
     return 0;
   }
-  if (leftPublished === null) {
+  if (leftDatePublished === null) {
     return 1;
   }
-  if (rightPublished === null) {
+  if (rightDatePublished === null) {
     return -1;
   }
-  if (leftPublished === rightPublished) {
+  if (leftDatePublished === rightDatePublished) {
     return 0;
   }
 
-  return leftPublished.localeCompare(rightPublished);
+  return leftDatePublished.localeCompare(rightDatePublished);
 }
 
 export function buildDomainStats(links: readonly LinkRecord[], selectedTags: readonly TagRecord[] = []): SourceStat[] {
@@ -68,7 +68,7 @@ export function buildDomainStats(links: readonly LinkRecord[], selectedTags: rea
     .map((group) => ({
       domain: group.domain,
       count: group.links.length,
-      links: [...group.links].sort(compareLinksByPublished),
+      links: [...group.links].sort(compareLinksByDatePublished),
     }))
     .sort((a, b) => {
       if (b.count !== a.count) {
@@ -195,7 +195,7 @@ export default function SourcesSection({ links, selectedTags = [], showHeading =
                         underline="hover"
                         variant="body2"
                       >
-                        {link.description ?? link.title}
+                        {link.description ?? link.name}
                       </MuiLink>
                     </ListItem>
                   ))}

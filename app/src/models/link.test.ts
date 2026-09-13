@@ -7,97 +7,100 @@ describe("Link", () => {
   it("sets expected fields with defaults", () => {
     const link = new Link({
       id: "link-1",
-      title: "Example",
+      name: "Example",
       url: "https://example.com",
-      tags: [Tag.fromLabel("Tag")],
+      keywords: [Tag.fromLabel("Tag")],
     });
 
     assert.equal(link.id, "link-1");
-    assert.equal(link.title, "Example");
+    assert.equal(link.name, "Example");
+    assert.equal("title" in link, false);
     assert.equal(link.description, "Example");
     assert.equal(link.url, "https://example.com");
     assert.deepEqual(
-      link.tags.map((tag) => tag.label),
+      link.keywords.map((tag) => tag.label),
       ["Tag"]
     );
+    assert.equal("tags" in link, false);
     assert.equal(typeof link.createdAt, "string");
-    assert.equal(link.published, null);
+    assert.equal(link.datePublished, null);
+    assert.equal("published" in link, false);
   });
 });
 
 describe("Link.from", () => {
   it("trims fields and drops invalid tags", () => {
     const link = Link.from({
-      title: "  Good ",
+      name: "  Good ",
       url: " https://example.com ",
-      tags: [" TagOne ", "tagTwo", "   ", 123],
+      keywords: [" TagOne ", "tagTwo", "   ", 123],
     });
 
-    assert.equal(link.title, "Good");
+    assert.equal(link.name, "Good");
     assert.equal(link.url, "https://example.com");
     assert.deepEqual(
-      link.tags.map((tag) => tag.label),
+      link.keywords.map((tag) => tag.label),
       ["TagOne", "tagTwo"]
     );
   });
 
-  it("appends the published year to the description", () => {
+  it("appends the datePublished year to the description", () => {
     const link = Link.from({
-      title: "Example title",
+      name: "Example name",
       url: "https://example.com",
-      published: "2000-01-01",
-      tags: ["Tag"],
+      datePublished: "2000-01-01",
+      keywords: ["Tag"],
     });
 
-    assert.equal(link.published, "2000-01-01");
-    assert.equal(link.description, "Example title (2000)");
-    assert.equal(link.title, "Example title");
+    assert.equal(link.datePublished, "2000-01-01");
+    assert.equal(link.description, "Example name (2000)");
+    assert.equal(link.name, "Example name");
   });
 
-  it("handles published and description edge cases (table driven)", () => {
+  it("handles datePublished and description edge cases (table driven)", () => {
     const cases = [
       {
-        name: "null published leaves description untouched",
-        input: { description: "Already fine", published: null },
-        expected: { description: "Already fine", published: null },
+        name: "null datePublished leaves description untouched",
+        input: { description: "Already fine", datePublished: null },
+        expected: { description: "Already fine", datePublished: null },
       },
       {
         name: "description already includes year suffix",
-        input: { description: "Already fine (2000)", published: "2000-01-01" },
+        input: { description: "Already fine (2000)", datePublished: "2000-01-01" },
         expected: { description: "Already fine (2000)" },
       },
       {
-        name: "invalid published value becomes null",
-        input: { description: "Example", published: 123 },
-        expected: { description: "Example", published: null },
+        name: "invalid datePublished value becomes null",
+        input: { description: "Example", datePublished: 123 },
+        expected: { description: "Example", datePublished: null },
       },
       {
-        name: "blank description falls back to title",
-        input: { description: "   ", published: "1999-12-31" },
-        expected: { description: "Example title (1999)" },
+        name: "blank description falls back to name",
+        input: { description: "   ", datePublished: "1999-12-31" },
+        expected: { description: "Example name (1999)" },
       },
     ];
 
     cases.forEach(({ name, input, expected }) => {
       const link = Link.from({
-        title: "Example title",
+        name: "Example name",
         url: "https://example.com",
-        tags: ["Tag"],
+        keywords: ["Tag"],
         ...input,
       });
 
       assert.equal(link.description, expected.description, name);
-      if ("published" in expected) {
-        assert.equal(link.published, expected.published, name);
+      if ("datePublished" in expected) {
+        assert.equal(link.datePublished, expected.datePublished, name);
       }
     });
   });
 
   it("returns null for missing required fields", () => {
-    assert.equal(Link.from({ title: "No url", tags: ["Tag"] }), null);
-    assert.equal(Link.from({ url: "https://example.com", tags: ["Tag"] }), null);
+    assert.equal(Link.from({ name: "No url", keywords: ["Tag"] }), null);
+    assert.equal(Link.from({ url: "https://example.com", keywords: ["Tag"] }), null);
     assert.equal(
-      Link.from({ url: "https://example.com", title: "No tags" }),
+      Link.from({ url: "https://example.com", name: "No tags" }),
       null
     );
   });
@@ -110,12 +113,12 @@ describe("Link.from", () => {
 
   it("deduplicates tags by key", () => {
     const link = Link.from({
-      title: "Example",
+      name: "Example",
       url: "https://example.com",
-      tags: ["AI", "ai", " AI "],
+      keywords: ["AI", "ai", " AI "],
     });
 
-    assert.equal(link.tags.length, 1);
-    assert.equal(link.tags[0].label, "AI");
+    assert.equal(link.keywords.length, 1);
+    assert.equal(link.keywords[0].label, "AI");
   });
 });

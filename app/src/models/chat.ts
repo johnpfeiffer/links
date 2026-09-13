@@ -14,15 +14,15 @@ function wordsFor(value: unknown): string[] {
   return compactText(value).toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 1);
 }
 
-function tagsFor(link: Partial<LinkRecord> | null | undefined): string[] {
-  return Array.isArray(link?.tags)
-    ? link.tags.map((tag) => compactText(tag.label ?? tag.key)).filter(Boolean)
+function keywordLabelsFor(link: Partial<LinkRecord> | null | undefined): string[] {
+  return Array.isArray(link?.keywords)
+    ? link.keywords.map((tag) => compactText(tag.label ?? tag.key)).filter(Boolean)
     : [];
 }
 
 function scoreLinkForMessage(link: LinkRecord, messageWords: readonly string[]): number {
   if (messageWords.length === 0) return 0;
-  const haystack = wordsFor([link.title, link.description, link.url, tagsFor(link).join(" ")].join(" "));
+  const haystack = wordsFor([link.name, link.description, link.url, keywordLabelsFor(link).join(" ")].join(" "));
   const haystackSet = new Set(haystack);
   return messageWords.reduce((score, word) => score + (haystackSet.has(word) ? 1 : 0), 0);
 }
@@ -38,11 +38,11 @@ function candidateLinksFor(message: string, links: readonly LinkRecord[]): LinkR
 function serializeCandidate(link: LinkRecord): string {
   return JSON.stringify({
     id: compactText(link.id),
-    title: compactText(link.title),
-    description: compactText(link.description || link.title),
+    name: compactText(link.name),
+    description: compactText(link.description || link.name),
     url: compactText(link.url),
-    published: link.published,
-    tags: tagsFor(link),
+    datePublished: link.datePublished,
+    keywords: keywordLabelsFor(link),
   });
 }
 
@@ -57,7 +57,7 @@ export function buildChatPrompt({ message, links }: { message: string; links: re
     "You recommend links from a fixed catalog.",
     "Use only candidate ids from the catalog below.",
     "Return JSON only with this shape: {\"recommendations\":[{\"linkIds\":[\"existing-id\"]}]}",
-    "Do not invent links, titles, urls, ids, or tags.",
+    "Do not invent links, names, urls, ids, or keywords.",
     `User request: ${question}`,
     "Catalog:",
   ].join("\n");

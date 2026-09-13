@@ -16,4 +16,9 @@ Tags whould still work as they have been
 
 /sources view should operate exactly the same
 
+## Cleanup
+
+Internal code cleanup: Rename title→name, tags→keywords, published→datePublished, "alternate-url"→archivedAt in the internal model, then ripple it through the templates/views.
+
+Do 1 item at a time with red green TDD, always ensure all tests are passing and at the end verify the full app works as expected
 

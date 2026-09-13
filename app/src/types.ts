@@ -8,12 +8,12 @@ export type TagRouteNamespace = "tags" | "sources";
 export interface LinkRecord {
   id: string;
   url: string;
-  title: string;
+  name: string;
   description: string;
-  tags: TagRecord[];
+  keywords: TagRecord[];
   createdAt: string;
-  published: string | null;
-  "alternate-url": string;
+  datePublished: string | null;
+  archivedAt: string;
 }
 
 export interface ParsedUrlPath {

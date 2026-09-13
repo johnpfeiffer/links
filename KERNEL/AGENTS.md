@@ -69,12 +69,14 @@ Agents must not:
 
 Use of documentation is the way to record facts and output.
 
+Ensure there is a README.md that is updated with the dev setup, and how to test locally
+
 ## Tests Pass
 
 No task is complete if tests are failing.
 
 Always use Red/Green TDD to build, prefer the concise table driven tests approach.
-
+- Only create the most minimal tests, and prefer blackbox tests
 
 ## Patterns
 

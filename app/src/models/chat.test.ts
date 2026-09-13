@@ -11,19 +11,19 @@ import {
 const links = [
   {
     id: "ai-1",
-    title: "AI Systems",
+    name: "AI Systems",
     description: "A practical AI systems essay",
     url: "https://example.com/ai",
-    published: "2024-01-01",
-    tags: [{ label: "AI", key: "ai" }],
+    datePublished: "2024-01-01",
+    keywords: [{ label: "AI", key: "ai" }],
   },
   {
     id: "eng-1",
-    title: "Engineering Leadership",
+    name: "Engineering Leadership",
     description: "A software leadership talk",
     url: "https://example.com/eng",
-    published: null,
-    tags: [{ label: "Engineering", key: "engineering" }],
+    datePublished: null,
+    keywords: [{ label: "Engineering", key: "engineering" }],
   },
 ];
 

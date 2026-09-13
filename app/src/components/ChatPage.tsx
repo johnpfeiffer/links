@@ -74,10 +74,10 @@ function RecommendationLinks({ recommendations }: { recommendations: ChatRecomme
             {recommendation.links.map((link) => (
               <Box component="li" key={link.id}>
                 <MuiLink href={link.url} target="_blank" rel="noreferrer" underline="hover">
-                  {link.description ?? link.title}
+                  {link.description ?? link.name}
                 </MuiLink>
                 <Typography variant="body2" color="text.secondary">
-                  {link.title}
+                  {link.name}
                 </Typography>
               </Box>
             ))}

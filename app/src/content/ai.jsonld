@@ -136,6 +136,7 @@
       "@type": "PodcastEpisode",
       "name": "Could AI Datacenter Spending Blow Up The Economy? With Paul Kedrosky",
       "url": "https://www.youtube.com/watch?v=t_ey5z30gf0",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/tech-brew-ride-home/id1355212895?i=1000721311400",
       "datePublished": "2025-08-06",
       "keywords": [
         "AI",
@@ -172,6 +173,7 @@
       "@type": "BlogPosting",
       "name": "A clever approach to using agents by combining models (sort of MoE at agent runtime)",
       "url": "https://xbow.com/blog/alloy-agents/",
+      "archivedAt": "https://web.archive.org/web/20260819000435/https://xbow.com/blog/alloy-agents",
       "datePublished": "2025-07-17",
       "keywords": [
         "AI",
@@ -184,6 +186,7 @@
       "@type": "BlogPosting",
       "name": "Pragmatic coders are getting utility from LLMs by Thomas Ptacek",
       "url": "https://fly.io/blog/youre-all-nuts/",
+      "archivedAt": "https://web.archive.org/web/20260902071741/https://fly.io/blog/youre-all-nuts/",
       "datePublished": "2025-06-02",
       "keywords": [
         "AI",
@@ -208,6 +211,7 @@
       "@type": "Article",
       "name": "A16z on AI Application Architecture (aka LLM App Stack) patterns",
       "url": "https://a16z.com/emerging-architectures-for-llm-applications/",
+      "archivedAt": "https://web.archive.org/web/20260830030317/https://a16z.com/emerging-architectures-for-llm-applications/",
       "datePublished": "2023-06-20",
       "keywords": [
         "AI",
@@ -220,6 +224,7 @@
       "@type": "Article",
       "name": "GitHub on the LLM App: AI Application Architecture patterns",
       "url": "https://github.blog/ai-and-ml/llms/the-architecture-of-todays-llm-applications/",
+      "archivedAt": "https://web.archive.org/web/20260831204802/https://github.blog/ai-and-ml/llms/the-architecture-of-todays-llm-applications/",
       "datePublished": "2023-10-30",
       "keywords": [
         "AI",
@@ -695,6 +700,103 @@
         "Legal",
         "Harvey",
         "Winston Weinberg",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Lenny's Podcast: Why AI evals are the hottest new skill for product builders (Hamel Husain and Shreya Shankar)",
+      "url": "https://www.lennysnewsletter.com/p/why-ai-evals-are-the-hottest-new-skill",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/lennys-podcast-product-growth-career/id1627920305?i=1000728386314",
+      "datePublished": "2025-09-25",
+      "keywords": [
+        "AI",
+        "Evals",
+        "Hamel Husain",
+        "Shreya Shankar",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "name": "Anthropic: How we built our multi-agent research system",
+      "url": "https://www.anthropic.com/engineering/built-multi-agent-research-system",
+      "archivedAt": "https://web.archive.org/web/20250802092327/https://www.anthropic.com/engineering/built-multi-agent-research-system",
+      "datePublished": "2025-06-13",
+      "keywords": [
+        "AI",
+        "Agents",
+        "Context Engineering",
+        "Anthropic",
+        "Blog"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Lenny's Podcast: Why most AI products fail: Lessons from 50+ AI deployments at OpenAI, Google, and Amazon (Aishwarya Naresh Reganti and Kiriti Badam)",
+      "url": "https://www.lennysnewsletter.com/p/what-openai-and-google-engineers-learned",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/lennys-podcast-product-growth-career/id1627920305?i=1000744678894",
+      "datePublished": "2026-01-11",
+      "keywords": [
+        "AI",
+        "Evals",
+        "Aishwarya Naresh Reganti",
+        "Kiriti Badam",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "Article",
+      "name": "Wikipedia: Signs of AI writing",
+      "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing",
+      "archivedAt": "https://web.archive.org/web/20260906082125/https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing",
+      "datePublished": null,
+      "keywords": [
+        "AI",
+        "LLM",
+        "Article"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "GOTO Book Club: Prompt Engineering for Generative AI (Mike Taylor and James Phoenix)",
+      "url": "https://gotopia.tech/episodes/360/prompt-engineering-for-generative-ai",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/goto-the-brightest-minds-in-tech/id1559093928?i=1000720215088",
+      "datePublished": "2025-02-01",
+      "keywords": [
+        "AI",
+        "Prompt Engineering",
+        "Mike Taylor",
+        "James Phoenix",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Lenny's Podcast: How Intercom rose from the ashes by betting everything on AI (Eoghan McCabe)",
+      "url": "https://www.lennysnewsletter.com/p/how-intercom-rose-from-the-ashes-eoghan-mccabe",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/lennys-podcast-product-growth-career/id1627920305?i=1000722941720",
+      "datePublished": "2025-08-21",
+      "keywords": [
+        "AI",
+        "Business",
+        "Intercom",
+        "Eoghan McCabe",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Dev Interrupted: You can't have AI without DevOps - GitHub's Martin Woodward",
+      "url": "https://linearb.io/dev-interrupted/podcast/you-can-t-have-ai-without-dev-ops",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/dev-interrupted/id1537003676?i=1000722639760",
+      "datePublished": "2025-08-19",
+      "keywords": [
+        "AI",
+        "Agents",
+        "DevOps",
+        "GitHub",
+        "Martin Woodward",
         "Podcast"
       ]
     }
