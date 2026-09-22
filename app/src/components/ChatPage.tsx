@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useMemo, useRef, useState } from "react";
 import { Await, Link as RouterLink, useLocation, useRouteLoaderData } from "react-router-dom";
 import {
   Alert,
@@ -16,14 +16,25 @@ import {
 import { parseUrlPath } from "../lib/parseUrlPath";
 import {
   CHAT_API_PATH,
+  DECISIONS_API_PATH,
   MAX_CHAT_RECOMMENDATION_ANSWERS,
   buildChatPrompt,
+  buildJevRequest,
   chatIsDisabled,
   parseChatRecommendations,
+  parseJevRecommendations,
 } from "../models/chat";
 import Loading from "./Loading";
 import { isJsonRecord } from "../types";
-import type { ChatRecommendation, ChatResponse, ChatTurn, LinkRecord, RootLoaderData } from "../types";
+import type {
+  ChatRecommendation,
+  ChatResponse,
+  ChatTurn,
+  JsonRecord,
+  LinkRecord,
+  RecommendationEngine,
+  RootLoaderData,
+} from "../types";
 
 function appFromChatPath(pathname: string): string {
   const segments = pathname.split("/").filter(Boolean);
@@ -62,6 +73,15 @@ async function readResponseJson(response: Response): Promise<ChatResponse> {
   }
 }
 
+async function readJsonRecord(response: Response): Promise<JsonRecord> {
+  try {
+    const payload: unknown = await response.json();
+    return isJsonRecord(payload) ? payload : {};
+  } catch {
+    return {};
+  }
+}
+
 function RecommendationLinks({ recommendations }: { recommendations: ChatRecommendation[] }) {
   return (
     <Stack spacing={2}>
@@ -95,65 +115,107 @@ function ChatExperience({ links }: { links: LinkRecord[] }) {
   const [turns, setTurns] = useState<ChatTurn[]>([]);
   const [previousInteractionId, setPreviousInteractionId] = useState("");
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const submittingRef = useRef(false);
   const recommendationCount = turns.length;
   const disabled = chatIsDisabled(recommendationCount);
   const sortedLinks = useMemo(() => (Array.isArray(links) ? links : []), [links]);
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
-    event.preventDefault();
+  async function requestRecommendations(engine: RecommendationEngine): Promise<void> {
+    const originalMessage = message;
     const trimmedMessage = message.trim();
 
-    if (!trimmedMessage || disabled || submitting) {
+    if (!trimmedMessage || disabled || submittingRef.current) {
       return;
     }
 
+    submittingRef.current = true;
     setSubmitting(true);
     setError("");
+    setNotice("");
 
     try {
-      const response = await fetch(CHAT_API_PATH, {
+      const response = await fetch(engine === "LLM" ? CHAT_API_PATH : DECISIONS_API_PATH, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: buildChatPrompt({
-            message: trimmedMessage,
-            links: sortedLinks,
-          }),
-          ...(previousInteractionId
-            ? { previousInteractionId }
-            : {}),
-        }),
+        body: JSON.stringify(
+          engine === "LLM"
+            ? {
+                message: buildChatPrompt({
+                  message: trimmedMessage,
+                  links: sortedLinks,
+                }),
+                ...(previousInteractionId
+                  ? { previousInteractionId }
+                  : {}),
+              }
+            : buildJevRequest({
+                message: originalMessage,
+                links: sortedLinks,
+              })
+        ),
       });
-      const body = await readResponseJson(response);
+      let recommendations: ChatRecommendation[];
 
-      if (!response.ok) {
-        throw new Error(body?.error || "Chat request failed");
-      }
+      if (engine === "LLM") {
+        const body = await readResponseJson(response);
+        if (!response.ok) {
+          throw new Error(body.error || "Chat request failed");
+        }
+        recommendations = parseChatRecommendations(body.message, sortedLinks);
+        if (recommendations.length === 0) {
+          throw new Error("No grounded recommendations were returned.");
+        }
 
-      const recommendations = parseChatRecommendations(body?.message, sortedLinks);
-      if (recommendations.length === 0) {
-        throw new Error("No grounded recommendations were returned.");
+        if (typeof body.interactionId === "string" && body.interactionId.trim()) {
+          setPreviousInteractionId(body.interactionId.trim());
+        }
+      } else {
+        const body = await readJsonRecord(response);
+        if (!response.ok) {
+          throw new Error(
+            typeof body.error === "string" ? body.error : "Decisions request failed"
+          );
+        }
+        const result = parseJevRecommendations(body, sortedLinks);
+        if (result.noStrongMatch) {
+          setNotice("No strong match found");
+          return;
+        }
+        recommendations = result.recommendations;
+        if (recommendations.length === 0) {
+          throw new Error("No grounded recommendations were returned.");
+        }
       }
 
       setTurns((current) => [
         {
           id: `${Date.now()}-${current.length}`,
           question: trimmedMessage,
+          engine,
           recommendations,
         },
         ...current,
       ]);
       setMessage("");
-
-      if (typeof body?.interactionId === "string" && body.interactionId.trim()) {
-        setPreviousInteractionId(body.interactionId.trim());
-      }
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Chat request failed");
+      setError(
+        caught instanceof Error
+          ? caught.message
+          : engine === "LLM"
+            ? "Chat request failed"
+            : "Decisions request failed"
+      );
     } finally {
+      submittingRef.current = false;
       setSubmitting(false);
     }
+  }
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
+    event.preventDefault();
+    await requestRecommendations("LLM");
   }
 
   return (
@@ -198,7 +260,15 @@ function ChatExperience({ links }: { links: LinkRecord[] }) {
                 variant="contained"
                 disabled={!message.trim() || disabled || submitting}
               >
-                Send
+                Ask LLM
+              </Button>
+              <Button
+                type="button"
+                variant="outlined"
+                disabled={!message.trim() || disabled || submitting}
+                onClick={() => void requestRecommendations("Jev")}
+              >
+                Ask Jev
               </Button>
               <Typography variant="body2" color="text.secondary">
                 Recommendations used: {recommendationCount} / {MAX_CHAT_RECOMMENDATION_ANSWERS}
@@ -222,6 +292,12 @@ function ChatExperience({ links }: { links: LinkRecord[] }) {
           </Alert>
         ) : null}
 
+        {notice ? (
+          <Alert severity="info" sx={{ mb: 3 }}>
+            {notice}
+          </Alert>
+        ) : null}
+
         {turns.length > 0 ? <Divider sx={{ my: 3 }} /> : null}
 
         <Stack spacing={3}>
@@ -229,6 +305,9 @@ function ChatExperience({ links }: { links: LinkRecord[] }) {
             <Box key={turn.id}>
               <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: 600 }}>
                 {turn.question}
+              </Typography>
+              <Typography variant="caption" color="text.secondary" sx={{ display: "block", mb: 1 }}>
+                Engine: {turn.engine}
               </Typography>
               <RecommendationLinks recommendations={turn.recommendations} />
             </Box>

@@ -33,9 +33,12 @@ export interface ChatRecommendation {
   links: LinkRecord[];
 }
 
+export type RecommendationEngine = "LLM" | "Jev";
+
 export interface ChatTurn {
   id: string;
   question: string;
+  engine: RecommendationEngine;
   recommendations: ChatRecommendation[];
 }
 

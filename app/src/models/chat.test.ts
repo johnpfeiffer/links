@@ -2,10 +2,13 @@ import assert from "node:assert/strict";
 import { describe, it } from "vitest";
 import {
   CHAT_API_PATH,
+  DECISIONS_API_PATH,
   MAX_CHAT_RECOMMENDATION_ANSWERS,
   buildChatPrompt,
+  buildJevRequest,
   chatIsDisabled,
   parseChatRecommendations,
+  parseJevRecommendations,
 } from "./chat.js";
 
 const links = [
@@ -71,6 +74,23 @@ describe("chat prompt and session limits", () => {
     assert.ok(prompt.length <= 8000);
   });
 
+  it("preserves the existing chat prompt output and candidate ordering", () => {
+    assert.equal(
+      buildChatPrompt({ message: "Recommend AI learning links", links }),
+      [
+        "You recommend links from a fixed catalog.",
+        "Use only candidate ids from the catalog below.",
+        "Return JSON only with this shape: {\"recommendations\":[{\"linkIds\":[\"existing-id\"]}]}",
+        "Do not invent links, names, urls, ids, or keywords.",
+        "User request: Recommend AI learning links",
+        "Catalog:",
+        '{"id":"ai-1","name":"AI Systems","description":"A practical AI systems essay","url":"https://example.com/ai","datePublished":"2024-01-01","keywords":["AI"]}',
+        '{"id":"eng-1","name":"Engineering Leadership","description":"A software leadership talk","url":"https://example.com/eng","datePublished":null,"keywords":["Engineering"]}',
+        "Return at most 3 recommendations.",
+      ].join("\n")
+    );
+  });
+
   it("disables chat at the maximum recommendation count", () => {
     assert.equal(MAX_CHAT_RECOMMENDATION_ANSWERS, 3);
     assert.equal(chatIsDisabled(0), false);
@@ -78,5 +98,95 @@ describe("chat prompt and session limits", () => {
     assert.equal(chatIsDisabled(2), false);
     assert.equal(chatIsDisabled(3), true);
     assert.equal(chatIsDisabled(4), true);
+  });
+});
+
+describe("Jev recommendation requests", () => {
+  it("builds one Choice question from the same bounded existing candidates", () => {
+    const manyLinks = Array.from({ length: 100 }, (_, index) => ({
+      ...links[index % links.length],
+      id: `link-${index}`,
+      name: `Candidate ${index}`,
+      description: `Candidate ${index} ${"detail ".repeat(30)}`,
+    }));
+    const message = "  Recommend AI learning links  ";
+    const prompt = buildChatPrompt({ message, links: manyLinks });
+    const promptIds = prompt
+      .split("\n")
+      .filter((line) => line.startsWith('{"id":'))
+      .map((line) => JSON.parse(line).id);
+    const request = buildJevRequest({ message, links: manyLinks });
+    const criteria = request.questions.best_link.criteria;
+    const candidateIds = Object.keys(criteria).filter(
+      (id) => id !== "none_of_the_above"
+    );
+
+    assert.equal(DECISIONS_API_PATH, "/api/decisions");
+    assert.equal(request.state.user_request, message);
+    assert.deepEqual(candidateIds, promptIds);
+    assert.ok(candidateIds.length > 0);
+    assert.ok(candidateIds.length < manyLinks.length);
+    assert.deepEqual(criteria[candidateIds[0]], {
+      title: manyLinks[0].name,
+      description: manyLinks[0].description.trim(),
+      tags: ["AI"],
+    });
+    assert.equal(
+      criteria.none_of_the_above,
+      "No candidate meaningfully helps with the request."
+    );
+  });
+});
+
+describe("Jev recommendation parsing", () => {
+  it("sorts probabilities, drops unknown and duplicate ids, and returns at most three links", () => {
+    const rankingLinks = [
+      ...links,
+      { ...links[0], id: "third", name: "Third" },
+      { ...links[0], id: "fourth", name: "Fourth" },
+      { ...links[0] },
+    ];
+    const parsed = parseJevRecommendations(
+      {
+        answers: {
+          best_link: {
+            probabilities: {
+              missing: 0.99,
+              "eng-1": 0.7,
+              "ai-1": 0.8,
+              third: 0.6,
+              fourth: 0.5,
+              none_of_the_above: 0.1,
+            },
+          },
+        },
+      },
+      rankingLinks
+    );
+
+    assert.equal(parsed.noStrongMatch, false);
+    assert.deepEqual(
+      parsed.recommendations[0].links.map((link) => link.id),
+      ["ai-1", "eng-1", "third"]
+    );
+  });
+
+  it("returns no recommendation when none of the above has the highest probability", () => {
+    const parsed = parseJevRecommendations(
+      {
+        answers: {
+          best_link: {
+            probabilities: {
+              "ai-1": 0.2,
+              none_of_the_above: 0.8,
+            },
+          },
+        },
+      },
+      links
+    );
+
+    assert.equal(parsed.noStrongMatch, true);
+    assert.deepEqual(parsed.recommendations, []);
   });
 });

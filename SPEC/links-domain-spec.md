@@ -110,13 +110,20 @@ A chat recommendation must:
 
 Chat session state must expose a visible recommendation count. A session allows at most `3` recommendation answers. When the visible recommendation count reaches `3`, new request submission is disabled and chat is disabled.
 
-The backend integration is a Worker endpoint at `/links/chat` for the deployed `links` app namespace. The MVP security boundary is:
+The backend integrations are the existing Worker endpoint at `/links/chat` and
+the generalized Decisions gateway at `/api/decisions`. The security boundary is:
 
-- React SPA calls the Worker endpoint.
+- React SPA calls exactly one selected endpoint per submission.
 - Worker allows only exact-origin CORS requests for the hosting origin or explicitly configured allowed origins.
+- provider credentials and the Jev model selection remain server-side.
 - Turnstile, rate limiting, low token caps, model calls, and response shaping are future implementation gates.
 
-The intended model provider path is Google Gemini/Gemma through Gemini API. Google documents an OpenAI-compatible Gemini API path using `https://generativelanguage.googleapis.com/v1beta/` and `chat/completions`; Google also documents hosted Gemma models on Gemini API. The derived chat invariants still require final responses to be link-grounded regardless of provider.
+The existing LLM provider remains Google Gemini/Gemma without behavioral
+change. The parallel Jev path sends one Choice question over the same bounded
+candidate subset and consumes the structured probabilities returned by
+OpenRouter Decisions. The derived chat invariants require final responses to be
+link-grounded regardless of provider. Provider selection adds no state
+predicate to `INV-017` or `INV-018`, so the TLA+ specification is unchanged.
 
 ## Views
 
@@ -142,10 +149,14 @@ Derived from requirements v7:
 - route namespace: `/_chat`, after any application name when present.
 - provide navigation back to the Links View.
 - show intro text above the freeform text box: `Ask for recommendations based on a top or scenario...`.
-- show the visible recommendation count near the Send button.
+- show separate `Ask LLM` and `Ask Jev` buttons while retaining LLM as the default form action.
+- show the engine label on every successful answer.
+- show the visible recommendation count near the provider buttons.
 - show the newest recommendation answer above older answers so recent responses stay closest to the request controls.
-- disable chat after `3` recommendation answers.
+- disable both provider actions while a request is pending and after `3` combined recommendation answers.
+- do not count failures or a Jev `none_of_the_above` result as recommendation answers.
 - preserve the backend API route `POST /links/chat`.
+- add the stateless backend API route `POST /api/decisions` without sending prior Gemini interaction ids.
 
 ### Sources View
 

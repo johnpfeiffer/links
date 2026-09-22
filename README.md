@@ -20,7 +20,7 @@ An index of great learning resources - applicable for career development in soft
 - `src/lib/`: app helpers (`parseUrlPath`).
 - `src/models/`: data models and collection helpers (`tag.js`, `tags.js`, `link.js`, `links.js`).
 - `src/content/`: JSON-LD data sources loaded at runtime.
-- Chat recommendations: Links View route `/_chat` or `/:app/_chat`; backend API route `POST /links/chat`.
+- Recommendations: Links View route `/_chat` or `/:app/_chat`; users choose the existing LLM route `POST /links/chat` or Jev via `POST /api/decisions`.
 
 ## Content Schema
 
@@ -89,8 +89,17 @@ flowchart TD
   K --> L[LinksList<br/>render items]
   G --> M[Ask for Recommendations]
   M --> P[ChatPage.jsx<br/>recommendations route]
-  P --> N[chat model helper<br/>prompt and validation]
-  N --> O[Cloudflare Worker<br/>POST /links/chat]
+  P --> N[recommendation model helper<br/>shared bounded candidates]
+  N --> O[Ask LLM<br/>POST /links/chat]
+  N --> Q[Ask Jev<br/>POST /api/decisions]
+  O --> R[Validate ids against loaded links]
+  Q --> R
 ```
 
 See `architecture.md` for the chat recommendations system and user journey diagrams.
+
+The browser never sends provider credentials or a Jev model; the deployment gateway selects the configured Decisions model. Both engines count successful grounded answers toward the same three-answer session limit, while failures and Jev's `none_of_the_above` result do not.
+
+## Summary
+
+Links offers separate, grounded “Ask LLM” and “Ask Jev” recommendation paths.

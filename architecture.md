@@ -12,11 +12,11 @@ and `CssBaseline`; pages use `sx` for layout and the chat input uses
 `slotProps.htmlInput` for its character limit. No component API changes were
 needed to complete the 9.2-to-9.4 dependency update.
 
-Validation on 2026-09-06: `rtk npm run check` passed strict typechecking,
-all 84 tests across 17 files, and the Vite production build. Browser smoke
-checks verified content loading, tag filtering, expansion of both tag and
-source accordions, and chat input enabling the Send button. Existing integration tests cover chat submission and the
-three-answer limit using mocked API responses.
+Validation on 2026-09-21: `rtk npm run check` passed strict typechecking,
+all 93 tests across 17 files, and the Vite production build. Integration tests
+cover provider selection, grounded response rendering, the combined
+three-answer limit, no-match handling, and pending-request controls with mocked
+API responses.
 
 The build retains its existing warning for the approximately 532 kB main chunk.
 `npm audit` reports two moderate vulnerable packages in React Router, outside
@@ -31,12 +31,14 @@ flowchart TD
   Home --> UI["React ChatPage<br/>/_chat or /:app/_chat"]
   UI --> Loader["Root loader<br/>Link.loadAll"]
   Loader --> Links["Existing normalized links"]
-  UI --> Prompt["chat model helper<br/>buildChatPrompt"]
-  Prompt --> API["POST /links/chat"]
-  API --> Worker["Cloudflare Worker chat example"]
-  Worker --> Provider["Gemini provider"]
-  Provider --> Worker
-  Worker --> Parser["parseChatRecommendations"]
+  UI --> Candidates["Shared bounded candidates<br/>local word-overlap ordering"]
+  Candidates --> LLM["Ask LLM<br/>POST /links/chat"]
+  Candidates --> Jev["Ask Jev<br/>POST /api/decisions"]
+  LLM --> Gemini["Existing Gemini provider"]
+  Jev --> Decision["OpenRouter Decisions<br/>environment-selected Jev model"]
+  Gemini --> Parser["parseChatRecommendations"]
+  Decision --> Parser2["parseJevRecommendations<br/>rank probabilities"]
+  Parser2 --> Validate["Resolve ids against existing links"]
   Parser --> Validate["Resolve ids against existing links"]
   Validate --> Render["Render only existing link attributes"]
 ```
@@ -50,13 +52,13 @@ from the favorites repo.
 ## Type-Safety Gates
 
 The application is authored in TypeScript with strict compiler settings in `app/tsconfig.json`.
-Untrusted remote content and chat responses enter as `unknown` and are narrowed before use; static
+Untrusted remote content and recommendation responses enter as `unknown` and are narrowed before use; static
 types complement rather than replace those runtime checks.
 
 ```mermaid
 flowchart LR
   Content["Remote or bundled JSON-LD"] --> Unknown["unknown input"]
-  Api["Chat API response"] --> Unknown
+  Api["LLM or Decisions API response"] --> Unknown
   Unknown --> Narrow["Runtime record checks"]
   Narrow --> Models["Typed Link / Tag / Chat contracts"]
   Models --> Ui["Typed React component props and state"]
@@ -67,7 +69,11 @@ flowchart LR
   Check --> Build["Vite production build"]
 ```
 
-The visible chat UI route is separate from `/links/chat` because `/links/chat` is the Cloudflare Worker API route in the imported backend example. The UI is reachable from the Links View at `/_chat` for a root-hosted app and `/:app/_chat` for app-prefixed hosting, such as `/links/_chat`.
+The visible chat UI route is separate from both provider gateways. The UI is
+reachable from the Links View at `/_chat` for a root-hosted app and
+`/:app/_chat` for app-prefixed hosting, such as `/links/_chat`. The existing LLM
+path remains `POST /links/chat`; the stateless Jev path is
+`POST /api/decisions`.
 
 ## Chat Journey
 
@@ -76,28 +82,47 @@ sequenceDiagram
   participant User
   participant HomePage
   participant ChatPage
-  participant Worker as POST /links/chat
+  participant LLM as POST /links/chat
+  participant Decisions as POST /api/decisions
   participant Gemini
+  participant Jev
 
   User->>HomePage: Click Ask for Recommendations
   HomePage-->>ChatPage: Navigate to /links/_chat
-  User->>ChatPage: Submit link request
-  ChatPage->>ChatPage: Build prompt from loaded links
-  ChatPage->>Worker: Send JSON message
-  Worker->>Gemini: Provider request
-  Gemini-->>Worker: JSON recommendation text
-  Worker-->>ChatPage: message and interaction id
-  ChatPage->>ChatPage: Parse link ids and validate against loaded links
+  User->>ChatPage: Enter link request
+  ChatPage->>ChatPage: Order and bound loaded-link candidates
+  alt User selects Ask LLM
+    ChatPage->>LLM: Send existing JSON message
+    LLM->>Gemini: Existing provider request
+    Gemini-->>LLM: JSON recommendation text
+    LLM-->>ChatPage: message and interaction id
+  else User selects Ask Jev
+    ChatPage->>Decisions: Send state and one Choice question
+    Decisions->>Jev: Inject configured model and authorize
+    Jev-->>Decisions: Structured probabilities
+    Decisions-->>ChatPage: Structured provider response
+  end
+  ChatPage->>ChatPage: Resolve returned ids against loaded links
   ChatPage-->>User: Show newest grounded recommendations first
   ChatPage->>ChatPage: Disable after 3 recommendation answers
 ```
 
+The Jev request keeps the user's input in `state.user_request` and creates one
+`best_link` Choice. Criteria keys are canonical IDs from exactly the bounded
+candidate subset used by the LLM prompt; values contain compact loaded title,
+description, and tag data. `none_of_the_above` is the only reserved option.
+Responses are read from `answers.best_link.probabilities`, sorted descending,
+limited to three, and resolved back to loaded records. Unknown or duplicate IDs
+never render. A winning no-match option produces the informational “No strong
+match found” state and does not consume a recommendation answer.
+
 ## Invariant Mapping
 
 - `INV-017`: Chat renders only recommendations whose link ids resolve to currently loaded links. Unknown ids and duplicate ids inside a recommendation are dropped before display.
-- `INV-018`: Chat displays `Recommendations used: N / 3` near the Send button and disables new submissions after three successful recommendation answers.
+- `INV-018`: Chat displays `Recommendations used: N / 3` near the provider buttons and disables both after three successful recommendation answers across either engine. Failed requests and Jev no-match results do not increment the count.
 - Requirements v7: The Links View exposes `Ask for Recommendations` below Sources navigation and routes users to `/:app/_chat`.
 - Chat UI behavior: New recommendation answers are prepended above older answers so the newest response stays nearest the request controls.
+- Provider selection does not change the state predicates for `INV-017` or `INV-018`, so no TLA+ predicate change is required.
 
 ## Shared Tag Filtering
 
