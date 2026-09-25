@@ -247,6 +247,8 @@ describe("ChatPage integration", () => {
             json: async () => ({
               answers: {
                 best_link: {
+                  type: "choice",
+                  choice: "eng-1",
                   probabilities: { "eng-1": 0.9, none_of_the_above: 0.1 },
                 },
               },
@@ -285,6 +287,8 @@ describe("ChatPage integration", () => {
       json: async () => ({
         answers: {
           best_link: {
+            type: "choice",
+            choice: "none_of_the_above",
             probabilities: { "ai-1": 0.1, none_of_the_above: 0.9 },
           },
         },

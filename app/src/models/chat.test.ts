@@ -122,10 +122,11 @@ describe("Jev recommendation requests", () => {
     );
 
     assert.equal(DECISIONS_API_PATH, "/api/decisions");
-    assert.equal(request.state.user_request, message);
+    assert.equal(request.state.user_request, message.trim());
     assert.deepEqual(candidateIds, promptIds);
     assert.ok(candidateIds.length > 0);
     assert.ok(candidateIds.length < manyLinks.length);
+    assert.ok(Object.keys(criteria).length <= 255);
     assert.deepEqual(criteria[candidateIds[0]], {
       title: manyLinks[0].name,
       description: manyLinks[0].description.trim(),
@@ -150,6 +151,8 @@ describe("Jev recommendation parsing", () => {
       {
         answers: {
           best_link: {
+            type: "choice",
+            choice: "missing",
             probabilities: {
               missing: 0.99,
               "eng-1": 0.7,
@@ -176,6 +179,8 @@ describe("Jev recommendation parsing", () => {
       {
         answers: {
           best_link: {
+            type: "choice",
+            choice: "none_of_the_above",
             probabilities: {
               "ai-1": 0.2,
               none_of_the_above: 0.8,
@@ -187,6 +192,69 @@ describe("Jev recommendation parsing", () => {
     );
 
     assert.equal(parsed.noStrongMatch, true);
+    assert.deepEqual(parsed.recommendations, []);
+  });
+
+  it("recommends only grounded candidates that beat none of the above", () => {
+    const parsed = parseJevRecommendations(
+      {
+        answers: {
+          best_link: {
+            type: "choice",
+            choice: "ai-1",
+            probabilities: {
+              "ai-1": 0.7,
+              none_of_the_above: 0.2,
+              "eng-1": 0.1,
+            },
+          },
+        },
+      },
+      links
+    );
+
+    assert.equal(parsed.noStrongMatch, false);
+    assert.deepEqual(
+      parsed.recommendations[0].links.map((link) => link.id),
+      ["ai-1"]
+    );
+  });
+
+  it("compares none of the above only with grounded candidates", () => {
+    const parsed = parseJevRecommendations(
+      {
+        answers: {
+          best_link: {
+            type: "choice",
+            choice: "missing",
+            probabilities: {
+              missing: 0.9,
+              none_of_the_above: 0.8,
+              "ai-1": 0.2,
+            },
+          },
+        },
+      },
+      links
+    );
+
+    assert.equal(parsed.noStrongMatch, true);
+    assert.deepEqual(parsed.recommendations, []);
+  });
+
+  it("rejects responses that are not native Choice answers", () => {
+    const parsed = parseJevRecommendations(
+      {
+        answers: {
+          best_link: {
+            probabilities: { "ai-1": 0.9, none_of_the_above: 0.1 },
+          },
+        },
+      },
+      links
+    );
+
+    assert.equal(parsed.noStrongMatch, false);
     assert.deepEqual(parsed.recommendations, []);
   });
 });

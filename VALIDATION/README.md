@@ -37,6 +37,11 @@ rtk npm run test:vitest
 
 Add or update tests in the smallest relevant layer before implementation changes.
 
+Jev compatibility tests must verify that the app emits the native Decisions
+Choice shape, reserves one of at most `255` options for `none_of_the_above`,
+requires typed Choice answers, resolves IDs against loaded links before ranking,
+and recommends only grounded candidates that beat the no-match probability.
+
 ## Worker Checks
 
 Run from the repository root:

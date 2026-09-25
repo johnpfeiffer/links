@@ -5,6 +5,8 @@ export const CHAT_API_PATH = "/links/chat";
 export const DECISIONS_API_PATH = "/api/decisions";
 export const MAX_CHAT_RECOMMENDATION_ANSWERS = 3;
 export const NONE_OF_THE_ABOVE_ID = "none_of_the_above";
+const MAX_JEV_CHOICE_OPTIONS = 255;
+const MAX_JEV_CANDIDATES = MAX_JEV_CHOICE_OPTIONS - 1;
 const WORKER_MESSAGE_LIMIT = 8_000;
 const PROMPT_HEADROOM = 400;
 const CHAT_PROMPT_SUFFIX = "\nReturn at most 3 recommendations.";
@@ -109,7 +111,10 @@ export function buildJevRequest(
   { message, links }: { message: string; links: readonly LinkRecord[] }
 ): JevRequest {
   const question = compactText(message);
-  const candidates = boundedCandidateLinks(question, links).links;
+  const candidates = boundedCandidateLinks(question, links).links.slice(
+    0,
+    MAX_JEV_CANDIDATES
+  );
   const criteria: Record<string, JevCandidateCriterion | string> = {};
 
   for (const link of candidates) {
@@ -123,7 +128,7 @@ export function buildJevRequest(
   criteria[NONE_OF_THE_ABOVE_ID] = "No candidate meaningfully helps with the request.";
 
   return {
-    state: { user_request: message },
+    state: { user_request: question },
     questions: {
       best_link: {
         type: "choice",
@@ -188,57 +193,99 @@ export interface JevRecommendationResult {
   noStrongMatch: boolean;
 }
 
-function probabilitiesFrom(payload: unknown): JsonRecord | null {
+interface JevChoiceAnswer {
+  choice: string;
+  probabilities: JsonRecord;
+}
+
+function choiceAnswerFrom(payload: unknown): JevChoiceAnswer | null {
   if (!isJsonRecord(payload) || !isJsonRecord(payload.answers)) return null;
   const answer = payload.answers.best_link;
-  return isJsonRecord(answer) && isJsonRecord(answer.probabilities)
-    ? answer.probabilities
-    : null;
+  if (
+    !isJsonRecord(answer) ||
+    answer.type !== "choice" ||
+    typeof answer.choice !== "string" ||
+    !answer.choice.trim() ||
+    !isJsonRecord(answer.probabilities) ||
+    Object.keys(answer.probabilities).length === 0
+  ) {
+    return null;
+  }
+  if (
+    answer.confidence !== undefined &&
+    (
+      typeof answer.confidence !== "number" ||
+      !Number.isFinite(answer.confidence) ||
+      answer.confidence < 0 ||
+      answer.confidence > 1
+    )
+  ) {
+    return null;
+  }
+  if (
+    Object.values(answer.probabilities).some(
+      (probability) =>
+        typeof probability !== "number" ||
+        !Number.isFinite(probability) ||
+        probability < 0 ||
+        probability > 1
+    )
+  ) {
+    return null;
+  }
+  return {
+    choice: answer.choice,
+    probabilities: answer.probabilities,
+  };
 }
 
 export function parseJevRecommendations(
   payload: unknown,
   links: readonly LinkRecord[]
 ): JevRecommendationResult {
-  const probabilities = probabilitiesFrom(payload);
-  if (!probabilities) {
+  const answer = choiceAnswerFrom(payload);
+  if (!answer) {
     return { recommendations: [], noStrongMatch: false };
   }
 
-  const ranked = Object.entries(probabilities)
-    .filter((entry): entry is [string, number] =>
-      typeof entry[1] === "number" &&
-      Number.isFinite(entry[1]) &&
-      entry[1] >= 0 &&
-      entry[1] <= 1
-    )
+  const ranked = Object.entries(answer.probabilities)
+    .map((entry) => entry as [string, number])
     .map(([id, probability], index) => ({ id, probability, index }));
   const noneProbability = ranked.find(({ id }) => id === NONE_OF_THE_ABOVE_ID)?.probability;
+  if (noneProbability === undefined) {
+    return { recommendations: [], noStrongMatch: false };
+  }
+
+  const linkById = new Map(links.map((link) => [link.id, link]));
+  const seen = new Set<string>();
+  const groundedCandidates = ranked
+    .filter(({ id }) => id !== NONE_OF_THE_ABOVE_ID)
+    .map(({ id, probability, index }) => ({
+      id,
+      probability,
+      index,
+      link: linkById.get(id),
+    }))
+    .filter(({ id, link }) => {
+      if (!link || seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    });
   const highestCandidateProbability = Math.max(
-    ...ranked
-      .filter(({ id }) => id !== NONE_OF_THE_ABOVE_ID)
-      .map(({ probability }) => probability),
+    ...groundedCandidates.map(({ probability }) => probability),
     Number.NEGATIVE_INFINITY
   );
 
   if (
-    noneProbability !== undefined &&
+    answer.choice === NONE_OF_THE_ABOVE_ID ||
     noneProbability >= highestCandidateProbability
   ) {
     return { recommendations: [], noStrongMatch: true };
   }
 
-  const linkById = new Map(links.map((link) => [link.id, link]));
-  const seen = new Set<string>();
-  const resolvedLinks = ranked
-    .filter(({ id }) => id !== NONE_OF_THE_ABOVE_ID)
+  const resolvedLinks = groundedCandidates
+    .filter(({ probability }) => probability > noneProbability)
     .sort((left, right) => right.probability - left.probability || left.index - right.index)
-    .map(({ id }) => ({ id, link: linkById.get(id) }))
-    .filter(({ id, link }) => {
-      if (!link || seen.has(id)) return false;
-      seen.add(id);
-      return true;
-    })
     .slice(0, 3)
     .map(({ link }) => link as LinkRecord);
 

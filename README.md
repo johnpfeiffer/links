@@ -98,7 +98,7 @@ flowchart TD
 
 See `architecture.md` for the chat recommendations system and user journey diagrams.
 
-The browser never sends provider credentials or a Jev model; the deployment gateway selects the configured Decisions model. Both engines count successful grounded answers toward the same three-answer session limit, while failures and Jev's `none_of_the_above` result do not.
+The browser never sends provider credentials or a Jev model; the deployment gateway selects the configured Decisions model. The Jev request uses the gateway's native Choice contract with no more than `255` options, including `none_of_the_above`. Links accepts only a typed Choice answer and recommends at most three canonical links whose probabilities beat the no-match option. Both engines count successful grounded answers toward the same three-answer session limit, while failures and Jev's no-match result do not.
 
 ## Summary
 

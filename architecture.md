@@ -110,11 +110,15 @@ sequenceDiagram
 The Jev request keeps the user's input in `state.user_request` and creates one
 `best_link` Choice. Criteria keys are canonical IDs from exactly the bounded
 candidate subset used by the LLM prompt; values contain compact loaded title,
-description, and tag data. `none_of_the_above` is the only reserved option.
-Responses are read from `answers.best_link.probabilities`, sorted descending,
-limited to three, and resolved back to loaded records. Unknown or duplicate IDs
-never render. A winning no-match option produces the informational “No strong
-match found” state and does not consume a recommendation answer.
+description, and tag data. The Choice contains at most `255` options including
+the reserved `none_of_the_above` option, matching the native Decisions gateway
+contract. Responses must contain a typed `answers.best_link` Choice with a
+selected option and unit-interval probabilities. Links resolves probability
+keys back to loaded records before applying policy, recommends at most three
+canonical candidates whose probabilities beat `none_of_the_above`, and never
+renders unknown, duplicate, zero-probability, or weaker-than-no-match entries.
+A winning no-match option produces the informational “No strong match found”
+state and does not consume a recommendation answer.
 
 ## Invariant Mapping
 

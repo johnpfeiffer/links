@@ -121,9 +121,13 @@ the generalized Decisions gateway at `/api/decisions`. The security boundary is:
 The existing LLM provider remains Google Gemini/Gemma without behavioral
 change. The parallel Jev path sends one Choice question over the same bounded
 candidate subset and consumes the structured probabilities returned by
-OpenRouter Decisions. The derived chat invariants require final responses to be
-link-grounded regardless of provider. Provider selection adds no state
-predicate to `INV-017` or `INV-018`, so the TLA+ specification is unchanged.
+OpenRouter Decisions. Its native Choice request stays within the gateway's
+`255`-option maximum, including the reserved no-match option. A Jev response is
+usable only when it contains the typed Choice answer contract; recommendations
+are grounded first and then limited to candidates whose probabilities exceed
+`none_of_the_above`. The derived chat invariants require final responses to be
+link-grounded regardless of provider. Provider selection adds no state predicate
+to `INV-017` or `INV-018`, so the TLA+ specification is unchanged.
 
 ## Views
 
