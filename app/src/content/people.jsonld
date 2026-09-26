@@ -1959,7 +1959,7 @@
         "Team",
         "Startup",
         "Career",
-        "VPE",
+        "VP Engineering",
         "Podcast"
       ]
     },
@@ -1975,7 +1975,7 @@
         "Team",
         "Startup",
         "Career",
-        "VPE",
+        "VP Engineering",
         "Podcast"
       ]
     },
@@ -2210,7 +2210,7 @@
       "keywords": [
         "People",
         "Radical Candor",
-        "Startups",
+        "Startup",
         "Leadership",
         "Podcast"
       ]
@@ -2540,7 +2540,7 @@
         "People",
         "Product Management",
         "Shreyas Doshi",
-        "Teams",
+        "Team",
         "Podcast"
       ]
     },
@@ -2606,7 +2606,7 @@
         "People",
         "Y Combinator",
         "MVP",
-        "Startups",
+        "Startup",
         "Video"
       ]
     },
@@ -3398,7 +3398,7 @@
     {
       "@type": "PodcastEpisode",
       "name": "Managing Up: Personality Conflicts and the Us vs Them Mindset",
-      "url": "https://www.managingup.show/episodes/personality-conflicts-and-the-us-vs-them-mindset",
+      "url": "https://www.managingup.show/episodes/overcoming-the-us-vs-them-mindset",
       "archivedAt": "https://podcasts.apple.com/us/podcast/managing-up/id1412411569?i=1000458005929",
       "datePublished": "2019-11-27",
       "keywords": [
@@ -3787,7 +3787,7 @@
         "Radical Candor",
         "Feedback",
         "Culture",
-        "Startups",
+        "Startup",
         "Podcast"
       ]
     },
@@ -3928,6 +3928,172 @@
         "Product Management",
         "Layoffs",
         "Matt LeMay",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Managing Up: CTO vs. VP Engineering - What's the Difference?",
+      "url": "https://www.managingup.show/episodes/895bb722",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/managing-up/id1412411569?i=1000421871894",
+      "datePublished": "2018-10-15",
+      "keywords": [
+        "People",
+        "Engineering Leadership",
+        "CTO",
+        "Managing Up",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "ELC: How engineering leaders can better drive business outcomes and increase alignment between product and engineering (Gokul Rajaram)",
+      "url": "https://sfelc.com/podcasts/how-engineering-leaders-can-better-drive-business-outcomes-increase-alignment-between-product-and-engineering-w-gokul-rajaram",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/the-engineering-leadership-podcast/id1481996448?i=1000678261747",
+      "datePublished": "2024-11-26",
+      "keywords": [
+        "People",
+        "Engineering Leadership",
+        "Business",
+        "Gokul Rajaram",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "The Pragmatic Engineer: Promotions and tooling at Google (Irina Stanescu)",
+      "url": "https://newsletter.pragmaticengineer.com/p/promotions-and-tooling-at-google",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/the-pragmatic-engineer/id1769051199?i=1000675937554",
+      "datePublished": "2024-11-06",
+      "keywords": [
+        "People",
+        "Career Development",
+        "Google",
+        "Irina Stanescu",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "10% Happier: Gretchen Rubin on How To Use Your Five Senses to Reduce Anxiety, Increase Creativity, and Improve Your Relationships",
+      "url": "https://podcasts.apple.com/us/podcast/ten-percent-happier-with-dan-harris/id1087147821?i=1000608994488",
+      "archivedAt": "https://web.archive.org/web/20230528061940/https://www.tenpercent.com/tph/podcast-episode/gretchen-rubin-588",
+      "datePublished": "2023-04-17",
+      "keywords": [
+        "People",
+        "Mental Health",
+        "Gretchen Rubin",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "name": "RTR Dress Code: Sharing Our Engineering Ladder",
+      "url": "https://dresscode.renttherunway.com/blog/ladder",
+      "archivedAt": "https://web.archive.org/web/20260804191212/https://dresscode.renttherunway.com/blog/ladder",
+      "datePublished": "2015-03-26",
+      "keywords": [
+        "People",
+        "Career Development",
+        "Career Ladder",
+        "Rent the Runway",
+        "Blog"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "name": "Lara Hogan: Engineering Ladders at Meetup (Makers, Managers and Leveling Up)",
+      "url": "https://medium.com/making-meetup/engineering-ladders-at-meetup-caacbea4916e",
+      "archivedAt": "https://web.archive.org/web/20260110102250/https://medium.com/making-meetup/engineering-ladders-at-meetup-caacbea4916e",
+      "datePublished": "2018-07-16",
+      "keywords": [
+        "People",
+        "Career Development",
+        "Career Ladder",
+        "Meetup",
+        "Lara Hogan",
+        "Blog"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "name": "Eric Brooke: Software Engineering Leadership",
+      "url": "https://ericbrooke.blog/2018/09/16/software-engineering-leadership/",
+      "archivedAt": "https://web.archive.org/web/20230604035214/https://ericbrooke.blog/2018/09/16/software-engineering-leadership/",
+      "datePublished": "2018-09-16",
+      "keywords": [
+        "People",
+        "Leadership",
+        "Engineering Management",
+        "Career Development",
+        "Blog"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "The Pragmatic Engineer: Kubernetes and retiring at the top with Kelsey Hightower",
+      "url": "https://newsletter.pragmaticengineer.com/p/kubernetes-and-retiring-at-the-top",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/the-pragmatic-engineer/id1769051199?i=1000771013379",
+      "datePublished": "2026-06-03",
+      "keywords": [
+        "People",
+        "Career Development",
+        "Kubernetes",
+        "Kelsey Hightower",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Geeks Who Lead: The Multiple Levels of Engineering Management (Ron Lichty)",
+      "url": "https://podcast.geekswholead.com/1788616/episodes/11555521-short-byte-ron-lichty-the-multiple-levels-of-engineering-management",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/geeks-who-lead-podcast/id1104346760?i=1000584091469",
+      "datePublished": "2022-10-27",
+      "keywords": [
+        "People",
+        "Engineering Management",
+        "Leadership",
+        "Ron Lichty",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Career Tools: Director Level Interview Questions",
+      "url": "https://www.manager-tools.com/2021/10/director-level-interview-questions",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/career-tools/id299826841?i=1000537870957",
+      "datePublished": "2021-10-07",
+      "keywords": [
+        "People",
+        "Interviewing",
+        "Career Development",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "The Skip: Battling job search anxiety",
+      "url": "https://theskip.substack.com/p/battling-job-search-anxiety-39e",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/the-skip-podcast/id1663529202?i=1000659626447",
+      "datePublished": "2024-06-20",
+      "keywords": [
+        "People",
+        "Career Development",
+        "Mental Health",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Peterman Pod: Frontline Manager at Meta to Senior Director at Snapchat in 3 years (Rong Yan)",
+      "url": "https://www.developing.dev/p/frontline-manager-at-meta-to-senior",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/the-peterman-pod/id1777363835?i=1000742328456",
+      "datePublished": "2025-12-22",
+      "keywords": [
+        "People",
+        "Career Development",
+        "Meta",
+        "Rong Yan",
         "Podcast"
       ]
     }

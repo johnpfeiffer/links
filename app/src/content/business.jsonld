@@ -10,7 +10,7 @@
       "datePublished": "2007-01-26",
       "keywords": [
         "Business",
-        "Startups",
+        "Startup",
         "People Management",
         "Leadership",
         "Y Combinator",
@@ -24,7 +24,7 @@
       "datePublished": "2024-06-27",
       "keywords": [
         "Business",
-        "Startups",
+        "Startup",
         "Decision Making",
         "Y Combinator",
         "Leadership",
@@ -38,7 +38,7 @@
       "datePublished": "2011-09-01",
       "keywords": [
         "Business",
-        "Startups",
+        "Startup",
         "Entrepreneurship",
         "Book"
       ]
@@ -114,7 +114,7 @@
       "keywords": [
         "Business",
         "Joel Spolsky",
-        "Startups",
+        "Startup",
         "CTO",
         "Leadership",
         "Podcast"
@@ -199,7 +199,7 @@
       "datePublished": "2023-11-07",
       "keywords": [
         "Business",
-        "Startups",
+        "Startup",
         "VC",
         "Founder",
         "Podcast"
@@ -252,7 +252,7 @@
       "datePublished": "2026-05-21",
       "keywords": [
         "Business",
-        "Startups",
+        "Startup",
         "Sales",
         "Graphite",
         "Podcast"
@@ -294,7 +294,7 @@
       "keywords": [
         "Business",
         "VC",
-        "Startups",
+        "Startup",
         "AI",
         "Carta",
         "Peter Walker",
@@ -309,7 +309,7 @@
       "datePublished": "2024-04-11",
       "keywords": [
         "Business",
-        "Startups",
+        "Startup",
         "Product Management",
         "Todd Jackson",
         "Podcast"
@@ -323,7 +323,7 @@
       "datePublished": "2024-07-07",
       "keywords": [
         "Business",
-        "Startups",
+        "Startup",
         "VC",
         "Mike Maples",
         "Podcast"
@@ -377,7 +377,7 @@
       "datePublished": "2025-10-21",
       "keywords": [
         "Business",
-        "Startups",
+        "Startup",
         "Founder",
         "Ramp",
         "Karim Atiyeh",
@@ -525,6 +525,60 @@
         "Investing",
         "Decision Making",
         "Sam Hinkie",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Invest Like the Best: Tobi Lütke - Building Islands of Innovation",
+      "url": "https://colossus.com/episode/building-islands-of-innovation/",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/invest-like-the-best-with-patrick-oshaughnessy/id1154105909?i=1000673967784",
+      "datePublished": "2024-10-22",
+      "keywords": [
+        "Business",
+        "Entrepreneurship",
+        "Shopify",
+        "Tobi Lütke",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Techmeme Ride Home: How To Know When To Kill Your Startup (lessons from a startup shutdown)",
+      "url": "https://web.archive.org/web/20241119021851/https://www.ridehome.info/show/techmeme-ride-home/bns-how-to-know-when-to-kill-your-startup/",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/techmeme-ride-home/id1355212895?i=1000677181602",
+      "datePublished": "2024-11-16",
+      "keywords": [
+        "Business",
+        "Startup",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Lenny's Podcast: Unorthodox frameworks for growing your product, career, and impact (Bangaly Kaba)",
+      "url": "https://www.lennysnewsletter.com/p/frameworks-for-growing-your-career-bangaly-kaba",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/lennys-podcast-product-growth-career/id1627920305?i=1000656791571",
+      "datePublished": "2024-05-26",
+      "keywords": [
+        "Business",
+        "Product Management",
+        "Career Development",
+        "Bangaly Kaba",
+        "Podcast"
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Super Data Science 1008: The AI-Native Startup Playbook (Anthropic founder playbook)",
+      "url": "https://www.superdatascience.com/podcast/sds-1008-the-ai-native-startup-playbook",
+      "archivedAt": "https://podcasts.apple.com/us/podcast/super-data-science-ml-ai-podcast-with-jon-krohn/id1163599059?i=1000776249036",
+      "datePublished": "2026-07-10",
+      "keywords": [
+        "Business",
+        "Startup",
+        "AI",
+        "Anthropic",
         "Podcast"
       ]
     }
