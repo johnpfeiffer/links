@@ -12,11 +12,6 @@ import ChatPage from "./ChatPage.jsx";
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
-const futureConfig = {
-  v7_startTransition: true,
-  v7_relativeSplatPath: true,
-};
-
 const links = [
   {
     id: "ai-1",
@@ -61,12 +56,11 @@ async function renderChatRoute(initialPath = "/links/_chat") {
     ],
     {
       initialEntries: [initialPath],
-      future: futureConfig,
     }
   );
 
   await act(async () => {
-    root.render(<RouterProvider router={router} future={futureConfig} />);
+    root.render(<RouterProvider router={router} />);
   });
 
   const cleanup = async () => {

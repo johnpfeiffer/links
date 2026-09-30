@@ -12,11 +12,6 @@ import { Tag } from "../models/tag.js";
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
-const futureConfig = {
-  v7_startTransition: true,
-  v7_relativeSplatPath: true,
-};
-
 const sourceLinks = [
   {
     id: "1",
@@ -79,12 +74,11 @@ async function renderSourcesRoute(initialPath) {
     ],
     {
       initialEntries: [initialPath],
-      future: futureConfig,
     }
   );
 
   await act(async () => {
-    root.render(<RouterProvider router={router} future={futureConfig} />);
+    root.render(<RouterProvider router={router} />);
   });
 
   const cleanup = async () => {

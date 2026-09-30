@@ -17,11 +17,6 @@ import LinksSection from "./LinksSection";
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
-const futureConfig = {
-  v7_startTransition: true,
-  v7_relativeSplatPath: true,
-};
-
 const linkA = Link.from({
   keywords: ["AI", "Podcast"],
   url: "https://a.example.com",
@@ -108,12 +103,11 @@ async function renderAtPath(initialPath) {
 
   const router = createMemoryRouter(routes, {
     initialEntries: [initialPath],
-    future: futureConfig,
   });
 
   await act(async () => {
     root.render(
-      <RouterProvider router={router} future={futureConfig} />
+      <RouterProvider router={router} />
     );
   });
 
@@ -226,11 +220,10 @@ async function renderActualHomePageAtPath(initialPath) {
 
   const router = createMemoryRouter(routes, {
     initialEntries: [initialPath],
-    future: futureConfig,
   });
 
   await act(async () => {
-    root.render(<RouterProvider router={router} future={futureConfig} />);
+    root.render(<RouterProvider router={router} />);
   });
 
   const cleanup = async () => {
