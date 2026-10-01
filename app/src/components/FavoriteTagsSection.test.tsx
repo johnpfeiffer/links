@@ -8,11 +8,6 @@ import { Tag } from "../models/tag.js";
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
-const futureConfig = {
-  v7_startTransition: true,
-  v7_relativeSplatPath: true,
-};
-
 async function renderFavoriteTags(props) {
   const container = document.createElement("div");
   document.body.appendChild(container);
@@ -36,13 +31,12 @@ async function renderFavoriteTags(props) {
     ],
     {
       initialEntries: ["/"],
-      future: futureConfig,
     }
   );
 
   await act(async () => {
     root.render(
-      <RouterProvider router={router} future={futureConfig} />
+      <RouterProvider router={router} />
     );
   });
 

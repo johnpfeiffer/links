@@ -1,5 +1,5 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { RouterProvider, createBrowserRouter, defer, Outlet } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import ChatPage from "./components/ChatPage";
 import HomePage from "./components/HomePage";
 import SourcesPage from "./components/SourcesPage";
@@ -17,9 +17,9 @@ function loadLinksOnce(): Promise<LinkRecord[]> {
 }
 
 function linksRootLoader() {
-  return defer({
+  return {
     links: loadLinksOnce(),
-  });
+  };
 }
 
 const router = createBrowserRouter([

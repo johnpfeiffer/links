@@ -71,17 +71,12 @@ describe("AllTagsSection integration", () => {
       ];
       const router = createMemoryRouter(routes, {
         initialEntries: ["/links/tags"],
-        future: {
-          v7_startTransition: true,
-          v7_relativeSplatPath: true,
-        },
       });
 
       await act(async () => {
         root.render(
           <RouterProvider
             router={router}
-            future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
           />
         );
       });
