@@ -2,7 +2,7 @@
 import React, { act } from "react";
 import { describe, expect, it } from "vitest";
 import { createRoot } from "react-dom/client";
-import Footer from "./Footer.jsx";
+import { SiteFooter } from "johnutilsjs/ui";
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -12,7 +12,7 @@ async function renderFooter() {
   const root = createRoot(container);
 
   await act(async () => {
-    root.render(<Footer />);
+    root.render(<SiteFooter repo="links" />);
   });
 
   const cleanup = async () => {
@@ -25,8 +25,8 @@ async function renderFooter() {
   return { container, cleanup };
 }
 
-describe("Footer", () => {
-  it("renders the built-by line with LinkedIn and GitHub links", async () => {
+describe("SiteFooter (shared johnutilsjs footer)", () => {
+  it("renders the built-by line with LinkedIn and GitHub links to this repo", async () => {
     const { container, cleanup } = await renderFooter();
     expect(container.textContent).toContain("Built by John Pfeiffer");
 
@@ -40,7 +40,7 @@ describe("Footer", () => {
     expect(linkedin.getAttribute("rel")).toBe("noopener noreferrer");
 
     const github = links[1];
-    expect(github.getAttribute("href")).toBe("https://github.com/johnpfeiffer/links-app");
+    expect(github.getAttribute("href")).toBe("https://github.com/johnpfeiffer/links");
     expect(github.getAttribute("aria-label")).toBe("Source code on GitHub");
     expect(github.getAttribute("target")).toBe("_blank");
     expect(github.getAttribute("rel")).toBe("noopener noreferrer");
