@@ -178,7 +178,7 @@ from that filtered set, preserving `INV-011` through `INV-013`.
 
 ## Global Footer
 
-`app/src/components/Footer.tsx` is a pure presentational component rendered once in `App.tsx` (inside the `ThemeProvider`, after the `RouterProvider`) so it appears on every route. It shows a "Built by John Pfeiffer" line with LinkedIn and GitHub source-link icons (`@mui/icons-material`); the GitHub link points at this repository. Covered by `Footer.test.tsx` (jsdom, `createRoot` + `act`).
+The footer is the shared `SiteFooter` from `johnutilsjs/ui`, rendered once in `App.tsx` (inside the `ThemeProvider`, after the `RouterProvider`) so it appears on every route. It shows a centered "Built by John Pfeiffer" line with LinkedIn and GitHub source-link icons; the app passes `repo="links"` so the GitHub link points at this repository. Covered by `app/src/components/siteFooter.test.tsx` (jsdom, `createRoot` + `act`).
 
 ## JSON-LD migration (requirements v9)
 

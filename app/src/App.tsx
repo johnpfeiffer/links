@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import ChatPage from "./components/ChatPage";
 import HomePage from "./components/HomePage";
 import SourcesPage from "./components/SourcesPage";
-import Footer from "./components/Footer";
+import { SiteFooter } from "johnutilsjs/ui";
 import { Link } from "./models/link";
 import type { LinkRecord } from "./types";
 
@@ -82,7 +82,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <RouterProvider router={router} />
-      <Footer />
+      <SiteFooter repo="links" />
     </ThemeProvider>
   );
 }
